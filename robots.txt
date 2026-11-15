@@ -1,4 +1,7 @@
+# EYE VINA – Shop Lens Hà Nội
 User-agent: *
 Allow: /
+Disallow: /apps-script/
+Disallow: /404.html
 
 Sitemap: https://eyevina.com/sitemap.xml

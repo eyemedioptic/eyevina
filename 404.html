@@ -1,7 +1,72 @@
-<!DOCTYPE html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Đang chuyển hướng – EYE VINA Shop Lens Hà Nội</title>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, follow">
+<title>Không tìm thấy trang – EYE VINA Shop Lens Hà Nội</title>
+<link rel="icon" type="image/png" href="/images/logo-eye-vina.png">
 <script>
-// Giữ các link cũ của eyevina.com (sản phẩm, tin tức...) – chuyển sang trang tương ứng trên matngoc.vn
-(function(){var p=location.pathname+location.search;
-if(/^\/(dich-vu|tin-tuc|san-pham|video|lien-he|gioi-thieu|tuyen-dung|khuyen-mai|tim-shop)/.test(p)||/\.html$/.test(p)){location.replace('https://matngoc.vn'+p);}
-else{location.replace('/');}})();
-</script></head><body style="font-family:Arial;text-align:center;padding:60px">Đang chuyển hướng… <a href="/">Về trang chủ EYE VINA</a></body></html>
+/* Giữ link cũ của eyevina.com:
+   - Trang danh mục cũ  -> mục tương ứng trên trang chủ mới
+   - Trang chi tiết sản phẩm / tin tức cũ -> trang y hệt trên matngoc.vn */
+(function () {
+  var path = location.pathname, q = location.search;
+  var p = path.replace(/\/+$/, '').toLowerCase();
+  var map = {
+    '/index.html': '/', '/index.php': '/', '/trang-chu.html': '/',
+    '/gioi-thieu.html': '/#gioi-thieu',
+    '/dich-vu.html': '/#san-pham', '/san-pham.html': '/#san-pham', '/khuyen-mai.html': '/#san-pham',
+    '/tin-tuc.html': '/#tin-tuc', '/video.html': '/#video',
+    '/tim-shop.html': '/#shop-gan-day', '/lien-he.html': '/#lien-he', '/tuyen-dung.html': '/#lien-he'
+  };
+  var target = null;
+  if (map[p] && !q) target = map[p];
+  else if (/^\/(dich-vu|tin-tuc|san-pham|video|tuyen-dung|khuyen-mai|tim-kiem|thumb|upload)(\/|\.html|$)/.test(p) || /\.(html|php)$/.test(p) || /[?&](com|id|keywords|page)=/.test(q))
+    target = 'https://matngoc.vn' + path + q;
+  if (target) { window.__redirect = target; location.replace(target); }
+})();
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Be Vietnam Pro",Arial,sans-serif;color:#333;background:#f2f2f2;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;line-height:1.6}
+.box{background:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.08);max-width:560px;width:100%;padding:34px 28px;text-align:center}
+.box img{width:170px;margin:0 auto 18px;display:block}
+h1{font-size:24px;color:#222;margin-bottom:8px}
+.code{font-size:64px;font-weight:800;color:#333;line-height:1;letter-spacing:4px}
+p{color:#555;margin-bottom:18px}
+.btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:18px}
+.btns a{border-radius:24px;padding:11px 20px;font-weight:700;text-decoration:none;font-size:14.5px}
+.b1{background:#333;color:#fff}.b1:hover{background:#000}
+.b2{border:1px solid #333;color:#333}.b2:hover{background:#333;color:#fff}
+.b3{background:#0068ff;color:#fff}
+.links{font-size:14px;color:#777}
+.links a{color:#61330b;margin:0 6px}
+#go{display:none}
+</style>
+</head>
+<body>
+<main class="box">
+  <img src="/images/logo-eye-vina.png" alt="EYE VINA – Shop Lens Hà Nội">
+  <div id="go"><h1>Đang chuyển đến trang bạn cần…</h1><p>Nếu trình duyệt không tự chuyển, <a id="goLink" href="/">bấm vào đây</a>.</p></div>
+  <div id="nf">
+    <div class="code">404</div>
+    <h1>Không tìm thấy trang</h1>
+    <p>Trang bạn tìm có thể đã được chuyển hoặc không còn tồn tại. Hãy xem các sản phẩm kính áp tròng tại shop lens Hà Nội EYE VINA nhé!</p>
+    <div class="btns">
+      <a class="b1" href="/">Về trang chủ</a>
+      <a class="b2" href="/#san-pham">Xem sản phẩm</a>
+      <a class="b3" href="https://zalo.me/0989666559" target="_blank" rel="noopener">Zalo 0989 666 559</a>
+    </div>
+    <div class="links"><a href="/#tin-tuc">Tin tức</a>·<a href="/#shop-gan-day">Shop lens gần đây</a>·<a href="tel:0989666559">Gọi 0989 666 559</a></div>
+  </div>
+</main>
+<script>
+if (window.__redirect) {
+  document.getElementById('nf').style.display = 'none';
+  document.getElementById('go').style.display = 'block';
+  document.getElementById('goLink').href = window.__redirect;
+}
+</script>
+</body>
+</html>
