@@ -275,17 +275,24 @@ section{padding:35px 0}
 .pd-off{background:var(--red);color:#fff;font-size:12.5px;font-weight:700;border-radius:4px;padding:2px 8px}
 .pd-desc{color:#444;font-size:15px;line-height:1.75;margin-bottom:18px;border-left:3px solid var(--gold);padding-left:14px}
 .pd-desc p{margin:0 0 2px}.pd-desc h3{font-size:16px;margin:10px 0 4px}.pd-desc ul{margin:4px 0 8px 20px}
-.pd-buy{display:flex;gap:10px;margin-bottom:10px}
-.qtybox{display:flex;align-items:center;border:1px solid #ccc;border-radius:26px;overflow:hidden;flex:none;height:50px}
-.qtybox button{width:42px;height:100%;border:0;background:#fff;font-size:20px;cursor:pointer}
+.pd-buy{display:flex;flex-wrap:nowrap;align-items:center;gap:8px;margin-bottom:6px;container-type:inline-size}
+.qtybox{display:flex;align-items:center;border:1px solid #ccc;border-radius:22px;overflow:hidden;flex:0 0 auto;height:42px}
+.qtybox button{width:32px;height:100%;border:0;background:#fff;font-size:18px;cursor:pointer;padding:0;color:#333}
 .qtybox button:hover{background:#f2f2f2}
-.qtybox input{width:44px;height:100%;border:0;text-align:center;font-size:16px;font-family:inherit;-moz-appearance:textfield;outline:0}
+.qtybox input{width:34px;height:100%;border:0;text-align:center;font-size:15px;font-family:inherit;-moz-appearance:textfield;outline:0;padding:0}
 .qtybox input::-webkit-inner-spin-button{-webkit-appearance:none}
-.pd-add{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;height:50px;border:2px solid #333;background:#fff;color:#333;border-radius:26px;font-weight:700;font-size:15px;cursor:pointer;font-family:inherit;transition:.2s}
+.pd-add,.pd-now{height:42px;border-radius:22px;font-weight:700;font-size:14px;font-family:inherit;cursor:pointer;white-space:nowrap;min-width:0;display:flex;align-items:center;justify-content:center;gap:6px;padding:0 14px;transition:.2s}
+.pd-add{flex:1 1 auto;border:2px solid #333;background:#fff;color:#333}
+.pd-add svg{flex:none;width:18px;height:18px}
 .pd-add:hover{background:#333;color:#fff}
 .pd-add.added,.bb-add.added{background:#2e9d4a;border-color:#2e9d4a;color:#fff}
-.pd-now{width:100%;height:52px;border:0;border-radius:26px;background:var(--red);color:#fff;font-weight:700;font-size:16px;letter-spacing:.5px;cursor:pointer;font-family:inherit;box-shadow:0 6px 16px rgba(222,24,32,.25);transition:.2s}
+.pd-now{flex:1 1 auto;border:0;background:var(--red);color:#fff;letter-spacing:.3px;box-shadow:0 4px 12px rgba(222,24,32,.22)}
 .pd-now:hover{background:#b9131a}
+/* Khung hẹp: thu nhỏ dần, luôn 1 hàng, không xuống dòng */
+.pd-add span,.pd-now{overflow:hidden;text-overflow:ellipsis}
+@container (max-width:440px){.pd-buy{gap:6px}.qtybox button{width:26px}.qtybox input{width:30px;font-size:14px}.pd-add,.pd-now{font-size:13px;padding:0 9px;gap:5px}.pd-add svg{width:16px;height:16px}.pd-now{letter-spacing:0}}
+@container (max-width:345px){.pd-buy{gap:5px}.qtybox input{width:28px}.pd-add,.pd-now{font-size:12.5px;padding:0 5px;gap:4px}}
+@container (max-width:315px){.pd-add span{display:none}.pd-add{flex:0 0 42px;padding:0}}
 .pd-zalo{display:block;text-align:center;margin:12px 0 16px;color:#0068ff;font-weight:600;text-decoration:underline}
 .pd-trust{list-style:none;display:grid;gap:6px;font-size:14px;color:#555;border-top:1px dashed #ddd;padding-top:14px}
 .pd-related{margin-top:46px}
@@ -469,9 +476,9 @@ section{padding:35px 0}
         <div class="pd-desc"><p>Luxury Lens | 6th |  Đeo 24h</p> <p>Thành phần: Hydrophilic 55%</p> <p>DIA: 14.0mm (chuẩn mắt Châu Á)</p> <p>Độ mỏng: 0.025mm (tiêu chuẩn USA)</p> <p>Độ cong: 8.6mm (tiêu chuẩn chung EU)</p> <p>Phân loại: áp tròng có màu</p> <p>Sử dụng: 12h/ 1 lần /6 tháng</p> <p>Đáp ứng độ cận từ -0.00 </p> <p>Xuất xứ : Korea</p></div>
         <div class="pd-buy">
           <div class="qtybox" aria-label="Số lượng"><button type="button" onclick="pdQty(-1)" aria-label="Giảm">−</button><input id="pdQ" type="number" min="1" max="99" value="1" inputmode="numeric" aria-label="Số lượng"><button type="button" onclick="pdQty(1)" aria-label="Tăng">+</button></div>
-          <button type="button" class="pd-add" onclick="pdAdd(false,this)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M2 3h3l2.6 12.2a1.5 1.5 0 0 0 1.5 1.2h8.7a1.5 1.5 0 0 0 1.5-1.1L22 7H6"/></svg><span>Thêm vào giỏ</span></button>
+          <button type="button" class="pd-add" onclick="pdAdd(false,this)" aria-label="Thêm vào giỏ" title="Thêm vào giỏ"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M2 3h3l2.6 12.2a1.5 1.5 0 0 0 1.5 1.2h8.7a1.5 1.5 0 0 0 1.5-1.1L22 7H6"/></svg><span>Thêm vào giỏ</span></button>
+          <button type="button" class="pd-now" onclick="pdAdd(true)">ĐẶT MUA NGAY</button>
         </div>
-        <button type="button" class="pd-now" onclick="pdAdd(true)">ĐẶT MUA NGAY</button>
         <a class="pd-zalo" href="https://zalo.me/0989666559" target="_blank" rel="noopener">Tư vấn chọn độ qua Zalo 0989 666 559</a>
         <ul class="pd-trust">
           <li>🚚 Giao nhanh nội thành Hà Nội</li>
