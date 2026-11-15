@@ -3,6 +3,7 @@
 Website tĩnh cho https://eyevina.com (GitHub Pages).
 
 - `index.html` – trang chủ
+- `tin-tuc.html` – trang tin tức (45 bài, link chi tiết sang matngoc.vn)
 - `images/`, `fonts/` – tài nguyên
 - `404.html` – chuyển link cũ sang matngoc.vn
 - `CNAME` – tên miền eyevina.com

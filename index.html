@@ -74,6 +74,7 @@ section,[id]{scroll-margin-top:60px}
 .menu .mwrap>ul>li>a.active,.menu .mwrap>ul>li:hover>a{background:#000}
 .menu .sub{display:none;position:absolute;top:100%;left:0;background:#fff;min-width:340px;box-shadow:0 6px 18px rgba(0,0,0,.18);flex-direction:column;z-index:10}
 .menu li:hover .sub{display:flex}
+.menu li.closed .sub{display:none!important}
 .menu .sub a{padding:9px 16px;border-bottom:1px solid #eee;font-size:14px;color:#333}
 .menu .sub a:hover{background:var(--gray);color:var(--gold)}
 .mwrap{display:flex;align-items:center;gap:8px}
@@ -176,6 +177,16 @@ section{padding:35px 0}
 .news-item .more{font-size:13px;font-weight:600;color:var(--brown);margin-top:auto;align-self:flex-start}
 .news-item .more:hover{color:var(--gold)}
 @media(max-width:1180px) and (min-width:993px){.news-item .thumb{flex-basis:170px;width:170px}}
+.news-actions{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin-top:26px}
+.news-all{display:inline-block;background:#333;color:#fff;border-radius:30px;padding:12px 30px;font-weight:600;font-size:15px}
+.news-all:hover{background:#000}
+.news-item[hidden]{display:none}
+.crumb{font-size:13.5px;color:#888;margin-bottom:10px}.crumb a{color:#555}.crumb a:hover{color:var(--gold)}
+.page-head{padding:28px 0 6px;text-align:center}
+.page-head h1{font-size:30px;font-weight:700;color:#222;line-height:1.3;margin-bottom:8px}
+.page-head p{max-width:820px;margin:0 auto;color:#555}
+.news-tools{display:flex;justify-content:center;margin:0 0 22px}
+.news-tools input{width:100%;max-width:440px;border:1px solid #ddd;border-radius:24px;padding:10px 18px;outline:0;font-family:inherit;font-size:14.5px}
 /* ===== ABOUT ===== */
 .about{background:var(--gray)}
 .about .inner{display:grid;grid-template-columns:1fr 1.3fr;gap:35px;align-items:center}
@@ -385,7 +396,7 @@ section{padding:35px 0}
       <li><a href="#tin-tuc">Tin tức</a></li>
       <li><a href="#lien-he">Tuyển CTV</a></li>
       <li><a href="#video">Video</a></li>
-      <li><a href="#san-pham" onclick="setTimeout(()=>{sortSel.value='sale';renderAll()},50)">Deal</a></li>
+      <li><a href="#san-pham" onclick="setTimeout(()=>{if(window.sortSel){sortSel.value='sale';renderAll()}},50)">Deal</a></li>
       <li><a href="#shop-gan-day">Tìm shop</a></li>
       <li><a href="#lien-he">Liên hệ</a></li>
     </ul>
@@ -395,6 +406,7 @@ section{padding:35px 0}
     </div>
   </div>
 </nav>
+<!--MAIN-START-->
 
 <!-- BANNER -->
 <div class="slider" id="sl1">
@@ -482,52 +494,416 @@ section{padding:35px 0}
 <section id="tin-tuc">
   <div class="container">
     <div class="title-h2"><h2>Tin tức nổi bật</h2></div>
-    <div class="news-list">
+    <div class="news-list" id="newsHome">
       <article class="news-item">
-        <a class="thumb" href="https://matngoc.vn/tin-tuc/140/mua-kinh-ap-trong-can-loan-o-dau-tot-nhat-goi-y-cua-hang-uy-tin-va-chat-luong.html" target="_blank"><img loading="lazy" id="img-n0" src="images/mua-kinh-ap-trong-can-loan-o-dau.jpg" alt="Mua kính áp tròng cận loạn ở đâu tốt nhất? Gợi ý cửa hàng uy tín và chất lượng"></a>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/170/uu-dai-thang-7-mua-kinh-ap-trong-tang-dung-dich-ngam-chi-co-tai-mat-ngoc-lens.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/uu-dai-thang-7-mua-kinh-ap-trong-tang-dung-dich-ngam-chi-co-.jpg" alt="Ưu đãi tháng 7: Mua kính áp tròng tặng dung dịch ngâm – Chỉ có tại Mắt Ngọc Lens!"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/170/uu-dai-thang-7-mua-kinh-ap-trong-tang-dung-dich-ngam-chi-co-tai-mat-ngoc-lens.html" target="_blank">Ưu đãi tháng 7: Mua kính áp tròng tặng dung dịch ngâm – Chỉ có tại Mắt Ngọc Lens!</a></h3>
+          <time class="date">24/07/2025</time>
+          <p class="excerpt">Tháng 7 này, mua lens tại Mắt Ngọc Lens được tặng dung dịch ngâm lens cao cấp. Ưu đãi số lượng có hạn – Áp dụng toàn bộ lens thời trang &amp; lens cận. Xem ngay!</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/170/uu-dai-thang-7-mua-kinh-ap-trong-tang-dung-dich-ngam-chi-co-tai-mat-ngoc-lens.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item">
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/169/danh-gia-kinh-ap-trong-mat-ngoc-lens-eye-vina-co-nen-mua-khong.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/danh-gia-kinh-ap-trong-mat-ngoc-lens-eye-vina-co-nen-mua-kho.jpg" alt="Đánh giá kính áp tròng Mắt Ngọc Lens- EYE VINA – Có nên mua không?"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/169/danh-gia-kinh-ap-trong-mat-ngoc-lens-eye-vina-co-nen-mua-khong.html" target="_blank">Đánh giá kính áp tròng Mắt Ngọc Lens- EYE VINA – Có nên mua không?</a></h3>
+          <time class="date">24/07/2025</time>
+          <p class="excerpt">Kính áp tròng Mắt Ngọc Lens - EYE VINA có tốt không? Review chi tiết về độ êm, chất lượng, độ an toàn và bảng giá lens EYE VINA. Đọc ngay trước khi bạn chọn mua!</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/169/danh-gia-kinh-ap-trong-mat-ngoc-lens-eye-vina-co-nen-mua-khong.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item">
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/168/combo-kinh-ap-trong-lens-mat-dung-dich-hop-dung-tiet-kiem-den-30.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/combo-kinh-ap-trong-lens-mat-dung-dich-hop-dung-tiet-kiem-de.jpg" alt="Combo kính áp tròng (lens mắt) + dung dịch + hộp đựng – Tiết kiệm đến 30%"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/168/combo-kinh-ap-trong-lens-mat-dung-dich-hop-dung-tiet-kiem-den-30.html" target="_blank">Combo kính áp tròng (lens mắt) + dung dịch + hộp đựng – Tiết kiệm đến 30%</a></h3>
+          <time class="date">24/07/2025</time>
+          <p class="excerpt">Mua combo lens mắt + dung dịch ngâm + hộp đựng giúp bạn tiết kiệm đến 30%. Tham khảo các gói combo kính áp tròng hot nhất tại Hà Nội – giao hàng toàn quốc.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/168/combo-kinh-ap-trong-lens-mat-dung-dich-hop-dung-tiet-kiem-den-30.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item">
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/167/gia-lens-mat-kinh-ap-trong-bao-nhieu-bang-gia-cap-nhat-moi-nhat.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/gia-lens-mat-kinh-ap-trong-bao-nhieu-bang-gia-cap-nhat-moi-n.jpg" alt="Giá lens mắt, kính áp tròng bao nhiêu? Bảng giá cập nhật mới nhất"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/167/gia-lens-mat-kinh-ap-trong-bao-nhieu-bang-gia-cap-nhat-moi-nhat.html" target="_blank">Giá lens mắt, kính áp tròng bao nhiêu? Bảng giá cập nhật mới nhất</a></h3>
+          <time class="date">24/07/2025</time>
+          <p class="excerpt">Bạn đang tìm hiểu giá lens mắt, kính áp tròng? Tham khảo bảng giá mới nhất 2025 và gợi ý nơi mua lens chính hãng, an toàn tại Hà Nội.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/167/gia-lens-mat-kinh-ap-trong-bao-nhieu-bang-gia-cap-nhat-moi-nhat.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/166/dia-chi-ban-kinh-ap-trong-tai-ha-noi-uy-tin-tu-van-chon-lens-an-toan.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/dia-chi-ban-kinh-ap-trong-tai-ha-noi-uy-tin-tu-van-chon-lens.jpg" alt="Địa chỉ bán kính áp tròng tại Hà Nội uy tín – Tư vấn chọn lens an toàn"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/166/dia-chi-ban-kinh-ap-trong-tai-ha-noi-uy-tin-tu-van-chon-lens-an-toan.html" target="_blank">Địa chỉ bán kính áp tròng tại Hà Nội uy tín – Tư vấn chọn lens an toàn</a></h3>
+          <time class="date">24/07/2025</time>
+          <p class="excerpt">Tìm địa chỉ mua kính áp tròng uy tín tại Hà Nội? Mắt Ngọc cung cấp lens chính hãng, đa dạng mẫu mã, tư vấn tận tâm – bảo vệ đôi mắt bạn mỗi ngày!</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/166/dia-chi-ban-kinh-ap-trong-tai-ha-noi-uy-tin-tu-van-chon-lens-an-toan.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/165/cach-bao-quan-kinh-ap-trong-dung-cach-giup-keo-dai-tuoi-tho-lens.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/cach-bao-quan-kinh-ap-trong-dung-cach-giup-keo-dai-tuoi-tho-.jpg" alt="Cách bảo quản kính áp tròng đúng cách giúp kéo dài tuổi thọ lens"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/165/cach-bao-quan-kinh-ap-trong-dung-cach-giup-keo-dai-tuoi-tho-lens.html" target="_blank">Cách bảo quản kính áp tròng đúng cách giúp kéo dài tuổi thọ lens</a></h3>
+          <time class="date">23/07/2025</time>
+          <p class="excerpt">Bảo quản lens đúng cách không chỉ giúp kéo dài tuổi thọ kính áp tròng mà còn bảo vệ đôi mắt bạn khỏi nguy cơ viêm nhiễm. Cùng Mắt Ngọc tìm hiểu cách vệ sinh, bảo quản và lưu ý quan trọng khi dùng lens.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/165/cach-bao-quan-kinh-ap-trong-dung-cach-giup-keo-dai-tuoi-tho-lens.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/164/nguoi-moi-nen-chon-loai-kinh-ap-trong-nao-goi-y-lens-can-lens-1-ngay-de-su-dung.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/nguoi-moi-nen-chon-loai-kinh-ap-trong-nao-goi-y-lens-can-len.jpg" alt="Người mới nên chọn loại kính áp tròng nào? Gợi ý lens cận, lens 1 ngày dễ sử dụng"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/164/nguoi-moi-nen-chon-loai-kinh-ap-trong-nao-goi-y-lens-can-lens-1-ngay-de-su-dung.html" target="_blank">Người mới nên chọn loại kính áp tròng nào? Gợi ý lens cận, lens 1 ngày dễ sử dụng</a></h3>
+          <time class="date">23/07/2025</time>
+          <p class="excerpt">Người mới dùng kính áp tròng nên chọn loại nào? Bài viết chia sẻ kinh nghiệm chọn lens cận, lens 1 ngày an toàn, dễ đeo cho người mới. Xem gợi ý sản phẩm tại matngoc.vn.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/164/nguoi-moi-nen-chon-loai-kinh-ap-trong-nao-goi-y-lens-can-lens-1-ngay-de-su-dung.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/163/cach-su-dung-va-bao-quan-kinh-ap-trong-dung-cach-cho-nguoi-moi-bat-dau.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/cach-su-dung-va-bao-quan-kinh-ap-trong-dung-cach-cho-nguoi-m.jpg" alt="Cách sử dụng và bảo quản kính áp tròng đúng cách cho người mới bắt đầu"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/163/cach-su-dung-va-bao-quan-kinh-ap-trong-dung-cach-cho-nguoi-moi-bat-dau.html" target="_blank">Cách sử dụng và bảo quản kính áp tròng đúng cách cho người mới bắt đầu</a></h3>
+          <time class="date">23/07/2025</time>
+          <p class="excerpt">Hướng dẫn chi tiết cách đeo, tháo, vệ sinh và bảo quản kính áp tròng đúng cách. Tránh viêm nhiễm, khô mắt và tăng tuổi thọ lens. Gợi ý từ matngoc.vn.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/163/cach-su-dung-va-bao-quan-kinh-ap-trong-dung-cach-cho-nguoi-moi-bat-dau.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/162/cach-chon-kinh-ap-trong-dung-do-va-phu-hop-nhu-cau-su-dung.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/cach-chon-kinh-ap-trong-dung-do-va-phu-hop-nhu-cau-su-dung.jpg" alt="Cách chọn kính áp tròng đúng độ và phù hợp nhu cầu sử dụng"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/162/cach-chon-kinh-ap-trong-dung-do-va-phu-hop-nhu-cau-su-dung.html" target="_blank">Cách chọn kính áp tròng đúng độ và phù hợp nhu cầu sử dụng</a></h3>
+          <time class="date">23/07/2025</time>
+          <p class="excerpt">Hướng dẫn chọn kính áp tròng đúng độ cận, loạn, viễn và nhu cầu sử dụng hằng ngày, thời trang hay đi tiệc. Gợi ý lens uy tín tại matngoc.vn.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/162/cach-chon-kinh-ap-trong-dung-do-va-phu-hop-nhu-cau-su-dung.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/161/mat-bi-can-co-nen-deo-kinh-ap-trong-khong-giai-dap-chi-tiet-tu-chuyen-gia.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/mat-bi-can-co-nen-deo-kinh-ap-trong-khong-giai-dap-chi-tiet-.jpg" alt="Mắt bị cận có nên đeo kính áp tròng không? Giải đáp chi tiết từ chuyên gia"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/161/mat-bi-can-co-nen-deo-kinh-ap-trong-khong-giai-dap-chi-tiet-tu-chuyen-gia.html" target="_blank">Mắt bị cận có nên đeo kính áp tròng không? Giải đáp chi tiết từ chuyên gia</a></h3>
+          <time class="date">23/07/2025</time>
+          <p class="excerpt">Mắt cận có nên dùng kính áp tròng không? Bài viết giải đáp chi tiết ưu nhược điểm, lưu ý khi chọn lens cận và gợi ý lens chất lượng từ matngoc.vn.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/161/mat-bi-can-co-nen-deo-kinh-ap-trong-khong-giai-dap-chi-tiet-tu-chuyen-gia.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/160/7-loi-thuong-gap-khi-deo-kinh-ap-trong-va-cach-khac-phuc-hieu-qua.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/7-loi-thuong-gap-khi-deo-kinh-ap-trong-va-cach-khac-phuc-hie.jpg" alt="7 lỗi thường gặp khi đeo kính áp tròng và cách khắc phục hiệu quả"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/160/7-loi-thuong-gap-khi-deo-kinh-ap-trong-va-cach-khac-phuc-hieu-qua.html" target="_blank">7 lỗi thường gặp khi đeo kính áp tròng và cách khắc phục hiệu quả</a></h3>
+          <time class="date">23/07/2025</time>
+          <p class="excerpt">Đeo kính áp tròng sai cách gây đỏ mắt, khô rát, cộm. Xem 7 lỗi phổ biến và cách khắc phục an toàn cho người mới tại matngoc.vn.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/160/7-loi-thuong-gap-khi-deo-kinh-ap-trong-va-cach-khac-phuc-hieu-qua.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/159/cach-deo-va-thao-kinh-ap-trong-dung-cach-cho-nguoi-moi-bat-dau.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/cach-deo-va-thao-kinh-ap-trong-dung-cach-cho-nguoi-moi-bat-d.jpg" alt="Cách đeo và tháo kính áp tròng đúng cách cho người mới bắt đầu"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/159/cach-deo-va-thao-kinh-ap-trong-dung-cach-cho-nguoi-moi-bat-dau.html" target="_blank">Cách đeo và tháo kính áp tròng đúng cách cho người mới bắt đầu</a></h3>
+          <time class="date">23/07/2025</time>
+          <p class="excerpt">Hướng dẫn đeo và tháo kính áp tròng đúng cách, an toàn và không gây rát mắt. Phù hợp cho người mới dùng lens. Xem chi tiết tại matngoc.vn.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/159/cach-deo-va-thao-kinh-ap-trong-dung-cach-cho-nguoi-moi-bat-dau.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/158/vi-sao-gioi-tre-thich-dung-kinh-ap-trong-hon-kinh-truyen-thong.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/vi-sao-gioi-tre-thich-dung-kinh-ap-trong-hon-kinh-truyen-tho.jpg" alt="Vì sao giới trẻ thích dùng kính áp tròng hơn kính truyền thống?"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/158/vi-sao-gioi-tre-thich-dung-kinh-ap-trong-hon-kinh-truyen-thong.html" target="_blank">Vì sao giới trẻ thích dùng kính áp tròng hơn kính truyền thống?</a></h3>
+          <time class="date">23/07/2025</time>
+          <p class="excerpt">Kính áp tròng (lens mắt) đang trở thành xu hướng của giới trẻ. Vì sao họ lại chọn lens thay vì kính cận truyền thống? Cùng khám phá lý do ngay tại đây.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/158/vi-sao-gioi-tre-thich-dung-kinh-ap-trong-hon-kinh-truyen-thong.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/156/top-5-thuong-hieu-kinh-ap-trong-uy-tin-nhat-nam-2025.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/top-5-thuong-hieu-kinh-ap-trong-uy-tin-nhat-nam-2025.jpg" alt="Top 5 thương hiệu kính áp tròng uy tín nhất năm 2025"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/156/top-5-thuong-hieu-kinh-ap-trong-uy-tin-nhat-nam-2025.html" target="_blank">Top 5 thương hiệu kính áp tròng uy tín nhất năm 2025</a></h3>
+          <time class="date">23/07/2025</time>
+          <p class="excerpt">Bạn đang tìm thương hiệu kính áp tròng tốt, an toàn và đẹp? Khám phá ngay top 5 hãng lens được ưa chuộng nhất 2025. Có bán chính hãng tại Mắt Ngọc!</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/156/top-5-thuong-hieu-kinh-ap-trong-uy-tin-nhat-nam-2025.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/155/cac-loai-kinh-ap-trong-pho-bien-hien-nay-huong-dan-chon-lens.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/cac-loai-kinh-ap-trong-pho-bien-hien-nay-huong-dan-chon-lens.jpg" alt="Các loại kính áp tròng phổ biến hiện nay – Hướng dẫn chọn lens"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/155/cac-loai-kinh-ap-trong-pho-bien-hien-nay-huong-dan-chon-lens.html" target="_blank">Các loại kính áp tròng phổ biến hiện nay – Hướng dẫn chọn lens</a></h3>
+          <time class="date">22/07/2025</time>
+          <p class="excerpt">Khám phá các loại kính áp tròng phổ biến hiện nay: lens cận, lens thẩm mỹ, lens mềm, cứng... Cách chọn lens phù hợp từng nhu cầu. Đặt mua tại Mắt Ngọc Lens!</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/155/cac-loai-kinh-ap-trong-pho-bien-hien-nay-huong-dan-chon-lens.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/154/tong-hop-cac-loai-lens-mat-pho-bien-nhat-hien-nay-cach-chon-dung-loai-cho-ban.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/tong-hop-cac-loai-lens-mat-pho-bien-nhat-hien-nay-cach-chon-.jpg" alt="Tổng hợp các loại lens mắt phổ biến nhất hiện nay – Cách chọn đúng loại cho bạn"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/154/tong-hop-cac-loai-lens-mat-pho-bien-nhat-hien-nay-cach-chon-dung-loai-cho-ban.html" target="_blank">Tổng hợp các loại lens mắt phổ biến nhất hiện nay – Cách chọn đúng loại cho bạn</a></h3>
+          <time class="date">18/07/2025</time>
+          <p class="excerpt">Tìm hiểu các loại lens mắt phổ biến hiện nay như lens cận, lens màu, lens loạn,... và cách chọn loại kính áp tròng phù hợp với nhu cầu của bạn.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/154/tong-hop-cac-loai-lens-mat-pho-bien-nhat-hien-nay-cach-chon-dung-loai-cho-ban.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/152/kinh-ap-trong-la-gi-uu-nhuoc-diem-va-co-nen-su-dung-khong.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/kinh-ap-trong-la-gi-uu-nhuoc-diem-va-co-nen-su-dung-khong.jpg" alt="Kính áp tròng là gì? Ưu nhược điểm và có nên sử dụng không?"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/152/kinh-ap-trong-la-gi-uu-nhuoc-diem-va-co-nen-su-dung-khong.html" target="_blank">Kính áp tròng là gì? Ưu nhược điểm và có nên sử dụng không?</a></h3>
+          <time class="date">17/07/2025</time>
+          <p class="excerpt">Tìm hiểu kính áp tròng là gì, ưu điểm so với kính gọng, ai nên dùng và cách sử dụng an toàn. Mắt Ngọc – địa chỉ uy tín lens mắt tại Việt Nam.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/152/kinh-ap-trong-la-gi-uu-nhuoc-diem-va-co-nen-su-dung-khong.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/151/dia-chi-ban-kinh-ap-trong-uy-tin-tai-ha-noi-mat-ngoc-lens-chinh-hang.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/dia-chi-ban-kinh-ap-trong-uy-tin-tai-ha-noi-mat-ngoc-lens-ch.jpg" alt="Địa Chỉ Bán Kính Áp Tròng Uy Tín Tại Hà Nội – Mắt Ngọc Lens Chính Hãng"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/151/dia-chi-ban-kinh-ap-trong-uy-tin-tai-ha-noi-mat-ngoc-lens-chinh-hang.html" target="_blank">Địa Chỉ Bán Kính Áp Tròng Uy Tín Tại Hà Nội – Mắt Ngọc Lens Chính Hãng</a></h3>
+          <time class="date">07/07/2025</time>
+          <p class="excerpt">Tìm mua kính áp tròng tại Hà Nội? Mắt Ngọc Lens cung cấp lens thẩm mỹ, lens cận chính hãng, giao hàng nhanh, tư vấn tận tình, giá tốt.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/151/dia-chi-ban-kinh-ap-trong-uy-tin-tai-ha-noi-mat-ngoc-lens-chinh-hang.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/150/kinh-ap-trong-tham-my-giai-phap-che-khuyet-diem-ton-ve-dep-tu-nhien.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/kinh-ap-trong-tham-my-giai-phap-che-khuyet-diem-ton-ve-dep-t.jpg" alt="Kính Áp Tròng Thẩm Mỹ – Giải Pháp Che Khuyết Điểm &amp; Tôn Vẻ Đẹp Tự Nhiên"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/150/kinh-ap-trong-tham-my-giai-phap-che-khuyet-diem-ton-ve-dep-tu-nhien.html" target="_blank">Kính Áp Tròng Thẩm Mỹ – Giải Pháp Che Khuyết Điểm &amp; Tôn Vẻ Đẹp Tự Nhiên</a></h3>
+          <time class="date">07/07/2025</time>
+          <p class="excerpt">Khám phá các dòng kính áp tròng thẩm mỹ giúp che khuyết điểm mắt, tôn lên nét đẹp tự nhiên và an toàn cho mọi loại mắt. Đa dạng màu sắc, dễ đeo, giá tốt.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/150/kinh-ap-trong-tham-my-giai-phap-che-khuyet-diem-ton-ve-dep-tu-nhien.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/149/kinh-ap-trong-can-eye-vina-ro-net-moi-khoanh-khac-tu-tin-moi-ngay.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/kinh-ap-trong-can-eye-vina-ro-net-moi-khoanh-khac-tu-tin-moi.jpg" alt="Kính Áp Tròng Cận EYE VINA – Rõ Nét Mọi Khoảnh Khắc, Tự Tin Mỗi Ngày!"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/149/kinh-ap-trong-can-eye-vina-ro-net-moi-khoanh-khac-tu-tin-moi-ngay.html" target="_blank">Kính Áp Tròng Cận EYE VINA – Rõ Nét Mọi Khoảnh Khắc, Tự Tin Mỗi Ngày!</a></h3>
+          <time class="date">04/07/2025</time>
+          <p class="excerpt">DANH MỤC NHÀ Ở XÃ HỘI TRÊN ĐỊA BÀN THÀNH PHỐ HÀ NỘI GIAI ĐOẠN 2026 - 2030 HOÀN THÀNH CHỈ TIÊU TỐI THIỂU 120.000 CĂN HỘ</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/149/kinh-ap-trong-can-eye-vina-ro-net-moi-khoanh-khac-tu-tin-moi-ngay.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/147/kinh-ap-trong-cham-vao-ve-dep-tu-nhien-trong-ban.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/kinh-ap-trong-cham-vao-ve-dep-tu-nhien-trong-ban.jpg" alt="Kính Áp Tròng – Chạm Vào Vẻ Đẹp Tự Nhiên Trong Bạn"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/147/kinh-ap-trong-cham-vao-ve-dep-tu-nhien-trong-ban.html" target="_blank">Kính Áp Tròng – Chạm Vào Vẻ Đẹp Tự Nhiên Trong Bạn</a></h3>
+          <time class="date">27/06/2025</time>
+          <p class="excerpt">Kính áp tròng không chỉ giúp bạn nhìn rõ hơn, mà còn là cách nhẹ nhàng nhất để tôn lên nét cuốn hút tự nhiên của đôi mắt – nơi phản chiếu cảm xúc và cá tính riêng. Với thiết kế tinh tế, mềm mại và sắc màu hài hòa, mỗi chiếc lens như một điểm chạm nhỏ… nhưng đủ để thay đổi cả thần thái.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/147/kinh-ap-trong-cham-vao-ve-dep-tu-nhien-trong-ban.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/140/mua-kinh-ap-trong-can-loan-o-dau-tot-nhat-goi-y-cua-hang-uy-tin-va-chat-luong.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/mua-kinh-ap-trong-can-loan-o-dau-tot-nhat-goi-y-cua-hang-uy-.jpg" alt="Mua kính áp tròng cận loạn ở đâu tốt nhất? Gợi ý cửa hàng uy tín và chất lượng"></a>
         <div class="nc">
           <h3><a href="https://matngoc.vn/tin-tuc/140/mua-kinh-ap-trong-can-loan-o-dau-tot-nhat-goi-y-cua-hang-uy-tin-va-chat-luong.html" target="_blank">Mua kính áp tròng cận loạn ở đâu tốt nhất? Gợi ý cửa hàng uy tín và chất lượng</a></h3>
-          <span class="date">Bài viết nổi bật</span>
+          <time class="date">10/12/2024</time>
           <p class="excerpt">Bạn đang tìm mua kính áp tròng cận loạn chất lượng? Bài viết này sẽ giới thiệu các địa chỉ uy tín, các thương hiệu nổi bật và các lưu ý cần thiết khi chọn kính. Hãy cùng tìm hiểu cách chọn mua kính áp tròng cận loạn tốt nhất, đảm bảo an toàn và hiệu quả cho đôi mắt của bạn!</p>
           <a class="more" href="https://matngoc.vn/tin-tuc/140/mua-kinh-ap-trong-can-loan-o-dau-tot-nhat-goi-y-cua-hang-uy-tin-va-chat-luong.html" target="_blank">Xem thêm →</a>
         </div>
       </article>
-      <article class="news-item">
-        <a class="thumb" href="https://matngoc.vn/tin-tuc/135/kinh-ap-trong-tham-mi-lens-che-khuyet-diem-cho-mat-seo-mat-di-tat-duc-thuy-tinh-the-iris-contacr-lens.html" target="_blank"><img loading="lazy" id="img-n1" src="images/lens-che-khuyet-diem.jpg" alt="Kính áp tròng thẩm mĩ, lens che khuyết điểm cho mắt sẹo, mắt dị tật, đục thủy tinh thể, Iris Contact Lens"></a>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/138/eyevina--nha-phan-phoi-kinh-ap-trong-hang-dau-tam-nhin-va-su-menh.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/eyevina--nha-phan-phoi-kinh-ap-trong-hang-dau-tam-nhin-va-su.jpg" alt="Eyevina -  Nhà Phân Phối Kính Áp Tròng  Hàng Đầu- Tầm Nhìn và Sứ Mệnh"></a>
         <div class="nc">
-          <h3><a href="https://matngoc.vn/tin-tuc/135/kinh-ap-trong-tham-mi-lens-che-khuyet-diem-cho-mat-seo-mat-di-tat-duc-thuy-tinh-the-iris-contacr-lens.html" target="_blank">Kính áp tròng thẩm mĩ, lens che khuyết điểm cho mắt sẹo, mắt dị tật, đục thủy tinh thể, Iris Contact Lens</a></h3>
+          <h3><a href="https://matngoc.vn/tin-tuc/138/eyevina--nha-phan-phoi-kinh-ap-trong-hang-dau-tam-nhin-va-su-menh.html" target="_blank">Eyevina -  Nhà Phân Phối Kính Áp Tròng  Hàng Đầu- Tầm Nhìn và Sứ Mệnh</a></h3>
+          <time class="date">10/12/2024</time>
+          <p class="excerpt">Tại Eyevina, chúng tôi hướng đến việc trở thành nhà phân phối kính áp tròng hàng đầu tại Việt Nam, mang đến cho khách hàng những sản phẩm chất lượng nhất, an toàn nhất và thời trang nhất. Chúng tôi không ngừng mở rộng tầm nhìn để kết nối cộng đồng, cải thiện cuộc sống, và tạo nên giá trị bền vững. Eyevina cam kết không chỉ cung cấp sản phẩm, mà còn mang đến sự tự tin, phong cách và sức khỏe cho mọi ánh nhìn.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/138/eyevina--nha-phan-phoi-kinh-ap-trong-hang-dau-tam-nhin-va-su-menh.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/137/tim-mua-kinh-ap-trong-tot-nhat-tai-ha-noi-chat-luong-uy-tin.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/tim-mua-kinh-ap-trong-tot-nhat-tai-ha-noi-chat-luong-uy-tin.jpg" alt="Tìm Mua Kính Áp Tròng Tốt Nhất Tại Hà Nội - Chất Lượng &amp; Uy Tín"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/137/tim-mua-kinh-ap-trong-tot-nhat-tai-ha-noi-chat-luong-uy-tin.html" target="_blank">Tìm Mua Kính Áp Tròng Tốt Nhất Tại Hà Nội - Chất Lượng &amp; Uy Tín</a></h3>
+          <time class="date">10/12/2024</time>
+          <p class="excerpt">Kính áp tròng (lens) đã trở thành một phụ kiện không thể thiếu với nhiều người, không chỉ giúp cải thiện thị lực mà còn là lựa chọn thời trang giúp đôi mắt thêm cuốn hút. Tuy nhiên, việc tìm mua kính áp tròng tốt, chất lượng tại Hà Nội đòi hỏi sự cẩn trọng để bảo vệ sức khỏe đôi mắt. Dưới đây là một số thông tin hữu ích để bạn dễ dàng tìm được sản phẩm ưng ý.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/137/tim-mua-kinh-ap-trong-tot-nhat-tai-ha-noi-chat-luong-uy-tin.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/135/kinh-ap-trong-tham-mi-lens-che-khuyet-diem-cho-mat-seo-mat-di-tat-duc-thuy-tinh-the-iris-contacr-lens.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/kinh-ap-trong-tham-mi-lens-che-khuyet-diem-cho-mat-seo-mat-d.jpg" alt="Kính áp tròng thẩm mĩ, lens che khuyết điểm cho mắt sẹo, mắt dị tật, đục thủy tinh thể, Iris contacr"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/135/kinh-ap-trong-tham-mi-lens-che-khuyet-diem-cho-mat-seo-mat-di-tat-duc-thuy-tinh-the-iris-contacr-lens.html" target="_blank">Kính áp tròng thẩm mĩ, lens che khuyết điểm cho mắt sẹo, mắt dị tật, đục thủy tinh thể, Iris contacr</a></h3>
           <time class="date">04/12/2024</time>
-          <p class="excerpt">Bạn bị tật một bên mắt và điều đó khiến bạn thiếu tự tin khi giao tiếp? Thấu hiểu được những trăn trở và sự mặc cảm của bạn, EYE VINA đã cho ra mắt dòng lens che khuyết điểm Silicone Hydrogel cao cấp (lens cho mắt thở) để giúp bạn lấy lại sự tự tin.</p>
+          <p class="excerpt">Bạn bị tật một bên mắt và điều đó khiến bạn thiếu tự tin khi giao tiếp? Thấu hiểu được những trăn trở và sự mặc cảm của bạn, EYE VINA đã cho ra mắt dòng lens che khuyết điểm Silicone Hydrogel cao cấp (lems cho mắt thở) để cải thiện điều đó và giúp bạn lấy lại tự tin cần có cho mình. Cùng xem sản phẩm để thấy được rằng khách hàng đã tự tin và xinh đẹp hơn thế nào sau khi dùng lens che khuyết điểm của EYE VINA nha</p>
           <a class="more" href="https://matngoc.vn/tin-tuc/135/kinh-ap-trong-tham-mi-lens-che-khuyet-diem-cho-mat-seo-mat-di-tat-duc-thuy-tinh-the-iris-contacr-lens.html" target="_blank">Xem thêm →</a>
         </div>
       </article>
-      <article class="news-item">
-        <a class="thumb" href="https://matngoc.vn/tin-tuc/44/kinh-ap-trong-va-nhung-dieu-ban-can-biet.html" target="_blank"><img loading="lazy" id="img-n2" src="images/kinh-ap-trong-la-gi.jpg" alt="Kính áp tròng và những điều bạn cần biết"></a>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/134/co-nen-deo-kinh-ap-trong-ban-dem.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/co-nen-deo-kinh-ap-trong-ban-dem.jpg" alt="Có nên đeo kính áp tròng ban đêm?"></a>
         <div class="nc">
-          <h3><a href="https://matngoc.vn/tin-tuc/44/kinh-ap-trong-va-nhung-dieu-ban-can-biet.html" target="_blank">Kính áp tròng và những điều bạn cần biết</a></h3>
+          <h3><a href="https://matngoc.vn/tin-tuc/134/co-nen-deo-kinh-ap-trong-ban-dem.html" target="_blank">Có nên đeo kính áp tròng ban đêm?</a></h3>
+          <time class="date">04/12/2024</time>
+          <p class="excerpt">Đeo kính áp tròng ban đêm là phương pháp điều trị tật khúc xạ không phẫu thuật đang được áp dụng ngày càng rộng rãi hiện nay. Kính áp tròng ban đêm có khả năng điều chỉnh độ cong của bề mặt giác mạc của mắt, giảm mức độ cận, giúp người bị cận thị có thị lực tốt cho mọi hoạt động bình thường vào ban ngày.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/134/co-nen-deo-kinh-ap-trong-ban-dem.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/133/gia-kinh-ap-trong-can-thi-6-thang-la-bao-nheu-nen-mua-o-dau-tot-nhat.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/gia-kinh-ap-trong-can-thi-6-thang-la-bao-nheu-nen-mua-o-dau-.jpg" alt="Giá kính áp tròng cận thị 6 tháng  là bao nhêu. Nên mua ở đâu tốt nhất?"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/133/gia-kinh-ap-trong-can-thi-6-thang-la-bao-nheu-nen-mua-o-dau-tot-nhat.html" target="_blank">Giá kính áp tròng cận thị 6 tháng  là bao nhêu. Nên mua ở đâu tốt nhất?</a></h3>
+          <time class="date">03/12/2024</time>
+          <p class="excerpt">Bạn đang tìm mua sản phẩm kính áp tròng để sử dụng lâu dài mà chưa tìm được địa chỉ nào uy tìn, tin cậy. EYE VINA xiin chia sẻ với bạn địa chỉ bán kính áp tròng tốt nhắt tại Hà Nội và hệ thống trên toàn quốc</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/133/gia-kinh-ap-trong-can-thi-6-thang-la-bao-nheu-nen-mua-o-dau-tot-nhat.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/131/kinh-ap-trong-can-thi-gia-bao-nhieu-loai-nao-tot-nhat.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/kinh-ap-trong-can-thi-gia-bao-nhieu-loai-nao-tot-nhat.jpg" alt="Kính áp tròng cận thị giá bao nhiêu? Loại nào tốt nhất?"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/131/kinh-ap-trong-can-thi-gia-bao-nhieu-loai-nao-tot-nhat.html" target="_blank">Kính áp tròng cận thị giá bao nhiêu? Loại nào tốt nhất?</a></h3>
+          <time class="date">03/12/2024</time>
+          <p class="excerpt">Kính áp tròng cận thị là loại kính mỏng được làm từ chất liệu đặc biệt (Silicone Hydrogel, Polyhema...) và bạn có thể đeo nó trực tiếp vào mắt mà không gặp phải những bất tiện như kính gọng. Sản phẩm này có mức giá từ 150.000 đ trở lên và có rất nhiều loại để bạn lựa chọn. Dưới đây là review 4 loại kính áp tròng dành cho người bị cận thị được sử dụng nhiều nhất hiện nay giúp bạn dễ dàng đưa ra sự lựa chọn.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/131/kinh-ap-trong-can-thi-gia-bao-nhieu-loai-nao-tot-nhat.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/130/co-nen-deo-kinh-ap-trong-thay-kinh-can.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/co-nen-deo-kinh-ap-trong-thay-kinh-can.jpg" alt="Có nên đeo kính áp tròng thay kính cận?"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/130/co-nen-deo-kinh-ap-trong-thay-kinh-can.html" target="_blank">Có nên đeo kính áp tròng thay kính cận?</a></h3>
+          <time class="date">03/12/2024</time>
+          <p class="excerpt">Kính áp tròng là một phương pháp làm đẹp được phái đẹp cũng như các bạn trẻ rất ưa chuộng. Có nên đeo kính áp tròng thay kính cận không? Hãy cùng tìm hiểu nhé!</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/130/co-nen-deo-kinh-ap-trong-thay-kinh-can.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/129/gia-lens-can-bao-nhieu-nen-mua-lens-o-dau-uy-tin.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/gia-lens-can-bao-nhieu-nen-mua-lens-o-dau-uy-tin.jpg" alt="Giá lens cận bao nhiêu? Nên mua lens ở đâu uy tín?"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/129/gia-lens-can-bao-nhieu-nen-mua-lens-o-dau-uy-tin.html" target="_blank">Giá lens cận bao nhiêu? Nên mua lens ở đâu uy tín?</a></h3>
+          <time class="date">03/12/2024</time>
+          <p class="excerpt">Có thể nói, kính cận gọng dường như đã quá quen thuộc với nhiều người. Tuy nhiên, sẽ có đôi lúc bạn cảm thấy vướng víu vì những chiếc kính này. Để giải quyết sự khó chịu và nhàm chán đó thì các loại kính áp tròng cận, hay còn gọi là lens cận đã được ra đời. Nhằm đáp ứng các tiêu chí cho đôi mắt vừa đẹp vừa xinh, vậy thì giá lens cận bao nhiêu, có đắt quá không? Đừng lo lắng quá, hãy cùng EYE VINA tìm hiểu chi tiết hơn ngay trong bài viết này nhé!</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/129/gia-lens-can-bao-nhieu-nen-mua-lens-o-dau-uy-tin.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/95/deo-kinh-ap-trong-qua-lau-co-gay-hai-cho-mat-khong.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/deo-kinh-ap-trong-qua-lau-co-gay-hai-cho-mat-khong.jpg" alt="ĐEO KÍNH ÁP TRÒNG QUÁ LÂU CÓ GÂY HẠI CHO MẮT KHÔNG"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/95/deo-kinh-ap-trong-qua-lau-co-gay-hai-cho-mat-khong.html" target="_blank">ĐEO KÍNH ÁP TRÒNG QUÁ LÂU CÓ GÂY HẠI CHO MẮT KHÔNG</a></h3>
+          <time class="date">01/07/2023</time>
+          <p class="excerpt">Rất thích đeo kính áp tròng nhưng nhiều người khuyên bạn không nên đeo thường xuyên quá lâu để tránh gây hại cho mắt. Điều này có đúng, việc đeo thường xuyên quá lâu có thực sự sẽ gây hại cho mắt không</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/95/deo-kinh-ap-trong-qua-lau-co-gay-hai-cho-mat-khong.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/94/thoi-han-su-dung-cua-kinh-ap-trong-la-bao-lau.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/thoi-han-su-dung-cua-kinh-ap-trong-la-bao-lau.jpg" alt="THỜI HẠN SỬ DỤNG CỦA KÍNH ÁP TRÒNG LÀ BAO LÂU?"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/94/thoi-han-su-dung-cua-kinh-ap-trong-la-bao-lau.html" target="_blank">THỜI HẠN SỬ DỤNG CỦA KÍNH ÁP TRÒNG LÀ BAO LÂU?</a></h3>
+          <time class="date">01/07/2023</time>
+          <p class="excerpt">Kính áp tròng cũng có thời hạn sử dụng sao và thời hạn dùng của kính là bao lâu? Nếu bạn đang bối rối với vấn đề này, xem thông tin bên dưới ngay.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/94/thoi-han-su-dung-cua-kinh-ap-trong-la-bao-lau.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/54/doc-nhanh-it-phut-de-trai-nghiem-cung-mat-kinh-rayban-aviator.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/doc-nhanh-it-phut-de-trai-nghiem-cung-mat-kinh-rayban-aviato.jpg" alt="ĐỌC NHANH ÍT PHÚT ĐỂ TRẢI NGHIỆM CÙNG MẮT KÍNH RAYBAN AVIATOR"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/54/doc-nhanh-it-phut-de-trai-nghiem-cung-mat-kinh-rayban-aviator.html" target="_blank">ĐỌC NHANH ÍT PHÚT ĐỂ TRẢI NGHIỆM CÙNG MẮT KÍNH RAYBAN AVIATOR</a></h3>
+          <time class="date">23/05/2023</time>
+          <p class="excerpt">Ray Ban Aviator, hay còn gọi là kính phi công là mẫu kính kinh điển nhất của Ray Ban và cũng là tượng đài trong làng mắt kính thời trang suốt bao thập kỉ. Thiết kế này nằm trong đơn đặt hàng của Không quân Mỹ, với sản phẩm có tính năng bảo vệ mắt phi công khỏi tác hại từ ánh sáng chói từ các đám mây.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/54/doc-nhanh-it-phut-de-trai-nghiem-cung-mat-kinh-rayban-aviator.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/44/kinh-ap-trong-va-nhung-dieu-ban-can-biet.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/kinh-ap-trong-va-nhung-dieu-ban-can-biet.jpg" alt="Kính áp tròng  và những điều bạn cần biết"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/44/kinh-ap-trong-va-nhung-dieu-ban-can-biet.html" target="_blank">Kính áp tròng  và những điều bạn cần biết</a></h3>
           <time class="date">28/12/2022</time>
-          <p class="excerpt">Kính áp tròng là loại thấu kính mỏng làm từ chất dẻo được đặt trực tiếp lên bề mặt con ngươi để điều chỉnh các tật khúc xạ của mắt. Kính áp tròng được coi là thiết bị y tế, dùng để điều chỉnh các tật của mắt, đáp ứng nhu cầu thẩm mỹ hay chữa bệnh về nhãn khoa.</p>
+          <p class="excerpt">Kính áp tròng là loại thấu kính mỏng làm từ chất dẻo được đặt trực tiếp lên bề mặt con ngươi để điều chỉnh các tật khúc xạ của mắt. Kính áp tròng được coi là thiết bị y tế và được dùng để điều chỉnh các tật của mắt, dùng để đáp ứng nhu cầu thẩm mỹ hay chữa bệnh về nhãn khoa.</p>
           <a class="more" href="https://matngoc.vn/tin-tuc/44/kinh-ap-trong-va-nhung-dieu-ban-can-biet.html" target="_blank">Xem thêm →</a>
         </div>
       </article>
-      <article class="news-item">
-        <a class="thumb" href="https://matngoc.vn/tin-tuc/42/mua-kinh-ap-trong-can-thi-loai-nao-tot-deo-lens-mat-can-thi-nhu-the-nao-phu-hop.html" target="_blank"><img loading="lazy" id="img-n3" src="images/kinh-ap-trong-can-thi.jpg" alt="Mua kính áp tròng cận thị loại nào tốt? Đeo lens mắt cận thị như thế nào phù hợp"></a>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/43/tre-em-tuoi-nao-co-the-deo-kinh-ap-trong-hoc-sinh-lop-may-co-the-deo-kinh-ap-trong-can-thi.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/tre-em-tuoi-nao-co-the-deo-kinh-ap-trong-hoc-sinh-lop-may-co.jpg" alt="Trẻ em tuổi nào có thể đeo kính áp tròng? Học sinh lớp mấy có thể đeo kính áp tròng cận thị?"></a>
         <div class="nc">
-          <h3><a href="https://matngoc.vn/tin-tuc/42/mua-kinh-ap-trong-can-thi-loai-nao-tot-deo-lens-mat-can-thi-nhu-the-nao-phu-hop.html" target="_blank">Mua kính áp tròng cận thị loại nào tốt? Đeo lens mắt cận thị như thế nào phù hợp</a></h3>
+          <h3><a href="https://matngoc.vn/tin-tuc/43/tre-em-tuoi-nao-co-the-deo-kinh-ap-trong-hoc-sinh-lop-may-co-the-deo-kinh-ap-trong-can-thi.html" target="_blank">Trẻ em tuổi nào có thể đeo kính áp tròng? Học sinh lớp mấy có thể đeo kính áp tròng cận thị?</a></h3>
+          <time class="date">27/12/2022</time>
+          <p class="excerpt">Trẻ em hay học sinh tuổi nào có thể đeo kính áp tròng. Đây là một chủ đề được nhiều người quan tâm trong thời gian vừa qua. Chúng tôi đã tham vấn các chuyên gia về ngành mắt và có một số khuyến nghị cần lưu ý cho học sinh sử dụng kính áp tròng cận thị</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/43/tre-em-tuoi-nao-co-the-deo-kinh-ap-trong-hoc-sinh-lop-may-co-the-deo-kinh-ap-trong-can-thi.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/42/mua-kinh-ap-trong-can-thi-loai-nao-tot-deo-lens-mat-can-thi-nhu-the-nao-phu-hop.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/mua-kinh-ap-trong-can-thi-loai-nao-tot-deo-lens-mat-can-thi-.jpg" alt="Mua kính áp tròng cận thị loại nào tốt? Đeo lens mắt cận thị như thế nào phù hợp?"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/42/mua-kinh-ap-trong-can-thi-loai-nao-tot-deo-lens-mat-can-thi-nhu-the-nao-phu-hop.html" target="_blank">Mua kính áp tròng cận thị loại nào tốt? Đeo lens mắt cận thị như thế nào phù hợp?</a></h3>
           <time class="date">27/12/2022</time>
           <p class="excerpt">Về vấn đề đeo kính áp tròng cận thị thay cho kính gọng có độ là một chủ đề đang được các bạn trẻ quan tâm. Vậy việc đeo kính áp tròng cận thị thay cho kính gọng có phù hợp không? Chúng ta cần đeo kính áp tròng cận thị như thế nào đúng cách?</p>
           <a class="more" href="https://matngoc.vn/tin-tuc/42/mua-kinh-ap-trong-can-thi-loai-nao-tot-deo-lens-mat-can-thi-nhu-the-nao-phu-hop.html" target="_blank">Xem thêm →</a>
         </div>
       </article>
-      <article class="news-item">
-        <a class="thumb" href="https://matngoc.vn/tin-tuc/13/kinh-ap-trong-giup-tam-nhin-cua-mat-rong-hon-kinh-gong.html" target="_blank"><img loading="lazy" id="img-n4" src="images/kinh-ap-trong-tam-nhin-rong.jpg" alt="Kính áp tròng giúp tầm nhìn của mắt rộng hơn kính gọng"></a>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/36/top-10-thuong-hieu-kinh-ap-trong-tot-nhat-hien-nay.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/top-10-thuong-hieu-kinh-ap-trong-tot-nhat-hien-nay.jpg" alt="TỐP 10 THƯƠNG HIỆU KÍNH ÁP TRÒNG TỐT NHẤT HIỆN NAY"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/36/top-10-thuong-hieu-kinh-ap-trong-tot-nhat-hien-nay.html" target="_blank">TỐP 10 THƯƠNG HIỆU KÍNH ÁP TRÒNG TỐT NHẤT HIỆN NAY</a></h3>
+          <time class="date">17/12/2022</time>
+          <p class="excerpt">Bạn cảm thấy không thoải mái với những đôi kính cận đầy vướng víu, bạn cảm thấy không tự tin với đôi mắt hí của mình, kính áp tròng là lựa chọn sáng suốt. Kính áp tròng đang là mặt hàng HOT được rất nhiều người yêu thích. Chúng rất đa dạng về kiểu dáng, màu sắc và thương hiệu. Điều đó khiến nhiều kh</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/36/top-10-thuong-hieu-kinh-ap-trong-tot-nhat-hien-nay.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/35/nhuoc-thi-la-gi-nguyen-nhan-va-cach-khac-phuc.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/nhuoc-thi-la-gi-nguyen-nhan-va-cach-khac-phuc.jpg" alt="NHƯỢC THỊ LÀ GÌ? NGUYÊN NHÂN VÀ CÁCH KHẮC PHỤC"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/35/nhuoc-thi-la-gi-nguyen-nhan-va-cach-khac-phuc.html" target="_blank">NHƯỢC THỊ LÀ GÌ? NGUYÊN NHÂN VÀ CÁCH KHẮC PHỤC</a></h3>
+          <time class="date">16/12/2022</time>
+          <p class="excerpt">Nhược thị là tình trạng thị lực bị suy giảm của thị giác xảy ra ở một hoặc cả hai bên mắt. Tình trạng này xảy ra khi có trở ngại nào đó trong hoạt động truyền tín hiệu của não và mắt, khiến cho não không thể nhận ra hình ảnh từ mắt.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/35/nhuoc-thi-la-gi-nguyen-nhan-va-cach-khac-phuc.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/18/shop-kinh-ap-trong-mat-ngoc-lens-dong-da.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/shop-kinh-ap-trong-mat-ngoc-lens-dong-da.jpg" alt="Shop Kính áp tròng MAT NGOC LENS Đống Đa"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/18/shop-kinh-ap-trong-mat-ngoc-lens-dong-da.html" target="_blank">Shop Kính áp tròng MAT NGOC LENS Đống Đa</a></h3>
+          <time class="date">12/11/2022</time>
+          <p class="excerpt">DANH MỤC NHÀ Ở XÃ HỘI TRÊN ĐỊA BÀN THÀNH PHỐ HÀ NỘI GIAI ĐOẠN 2026 - 2030 HOÀN THÀNH CHỈ TIÊU TỐI THIỂU 120.000 CĂN HỘ</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/18/shop-kinh-ap-trong-mat-ngoc-lens-dong-da.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/17/dia-chi-shop-lens-mat-o-cau-giay-ha-noi.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/dia-chi-shop-lens-mat-o-cau-giay-ha-noi.jpg" alt="Địa chỉ Shop Lens Mắt ở Cầu Giấy Hà Nội"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/17/dia-chi-shop-lens-mat-o-cau-giay-ha-noi.html" target="_blank">Địa chỉ Shop Lens Mắt ở Cầu Giấy Hà Nội</a></h3>
+          <time class="date">12/11/2022</time>
+          <p class="excerpt">Mắt Ngọc Lens Cầu Giấy là địa chỉ uy tín tại Hà Nội. Shop cung cấp các loại kính áp tròng, Contact Lens, Nước ngâm Lens, và khay đựng bảo quản kính áp tròng. Địa chỉ: Số 5, Ngõ 381 Nguyễn Khang, Cầu Giấy, Hà Nội</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/17/dia-chi-shop-lens-mat-o-cau-giay-ha-noi.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/15/deo-lens-co-tot-cho-mat-khong-nhung-ly-do-ban-nen-su-dung-lens-mat.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/deo-lens-co-tot-cho-mat-khong-nhung-ly-do-ban-nen-su-dung-le.jpg" alt="ĐEO LENS CÓ TỐT CHO MẮT KHÔNG? NHỮNG LÝ DO BẠN NÊN SỬ DỤNG LENS MẮT"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/15/deo-lens-co-tot-cho-mat-khong-nhung-ly-do-ban-nen-su-dung-lens-mat.html" target="_blank">ĐEO LENS CÓ TỐT CHO MẮT KHÔNG? NHỮNG LÝ DO BẠN NÊN SỬ DỤNG LENS MẮT</a></h3>
+          <time class="date">01/10/2022</time>
+          <p class="excerpt">Lens mắt là phụ kiện thời trang không còn xa lạ gì, nhất là với giới trẻ. Vẫn có nhiều bạn thắc mắc liệu đeo lens có tốt không. Câu trả lời là nếu bạn sử dụng đúng cách thì lens mắt sẽ đem lại nhiều lợi ích cho bạn. Do vậy có rất nhiều lý do bạn nên sở hữu món phụ kiện làm đẹp này. Hãy cùng tìm hiểu trong bài viết dưới đây.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/15/deo-lens-co-tot-cho-mat-khong-nhung-ly-do-ban-nen-su-dung-lens-mat.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/13/kinh-ap-trong-giup-tam-nhin-cua-mat-rong-hon-kinh-gong.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/kinh-ap-trong-giup-tam-nhin-cua-mat-rong-hon-kinh-gong.jpg" alt="Kính áp tròng giúp tầm nhìn của mắt rộng hơn kính gọng"></a>
         <div class="nc">
           <h3><a href="https://matngoc.vn/tin-tuc/13/kinh-ap-trong-giup-tam-nhin-cua-mat-rong-hon-kinh-gong.html" target="_blank">Kính áp tròng giúp tầm nhìn của mắt rộng hơn kính gọng</a></h3>
           <time class="date">19/09/2022</time>
-          <p class="excerpt">Không giống kính gọng cổ điển bị giới hạn bởi gọng kính, kính áp tròng có thể di chuyển theo chuyển động của mắt, giúp người đeo dễ dàng quan sát xung quanh. Hầu hết các loại kính áp tròng hiện nay đều có lớp chống tia cực tím, giúp bảo vệ mắt.</p>
+          <p class="excerpt">Không giống kính gọng cổ điển bị giới hạn bởi gọng kính, kính áp tròng có thể di chuyển theo chuyển động của mắt, giúp người đeo dễ dàng quan sát xung quanh; Bảo vệ mắt: Hầu hết các loại kính áp tròng hiện nay đều có 1 lớp chống lại tác hại của tia cực tím, giúp bảo vệ mắt.</p>
           <a class="more" href="https://matngoc.vn/tin-tuc/13/kinh-ap-trong-giup-tam-nhin-cua-mat-rong-hon-kinh-gong.html" target="_blank">Xem thêm →</a>
         </div>
       </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/12/su-dung-nuoc-ngam-kinh-ap-trong-nhu-the-nao-de-bao-ve-lens-mat-tot-nhat.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/su-dung-nuoc-ngam-kinh-ap-trong-nhu-the-nao-de-bao-ve-lens-m.jpg" alt="Sử dụng nước ngâm kính áp tròng như thế nào để bảo vệ lens mắt tốt nhất"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/12/su-dung-nuoc-ngam-kinh-ap-trong-nhu-the-nao-de-bao-ve-lens-mat-tot-nhat.html" target="_blank">Sử dụng nước ngâm kính áp tròng như thế nào để bảo vệ lens mắt tốt nhất</a></h3>
+          <time class="date">19/09/2022</time>
+          <p class="excerpt">Nước ngâm Lens hay còn gọi là dung dịch bảo quản kính áp tròng là sản phẩm đi kèm không thể thiếu đối với kính áp tròng. Ngoài ra còn có nước nhỏ mắt chống khô cho các bạn khi đeo lens. Nước ngâm Lens và nước nhỏ mắt chống khô giúp loại bỏ những protein từ giác mạc mắt tiết ra bám vào kính áp tròng, chống màng bám và khử khuẩn trực tiếp giúp bào vệ kính áp tròng và mắt khi đeo Lens</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/12/su-dung-nuoc-ngam-kinh-ap-trong-nhu-the-nao-de-bao-ve-lens-mat-tot-nhat.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/11/nhung-dieu-can-luu-y-cho-cac-ban-deo-kinh-ap-trong-thuong-xuyen.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/nhung-dieu-can-luu-y-cho-cac-ban-deo-kinh-ap-trong-thuong-xu.jpg" alt="Những điều cần lưu ý cho các bạn đeo kính áp tròng thường xuyên"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/11/nhung-dieu-can-luu-y-cho-cac-ban-deo-kinh-ap-trong-thuong-xuyen.html" target="_blank">Những điều cần lưu ý cho các bạn đeo kính áp tròng thường xuyên</a></h3>
+          <time class="date">19/09/2022</time>
+          <p class="excerpt">Hiện nay nhiều người thích sử dụng kính áp tròng. Kính áp tròng không chỉ giúp giải quyết các vấn đề về tật khúc xạ mà còn giúp tăng tính thẩm mỹ. Tuy nhiên không phải ai cũng biết sử dụng kính áp tròng đúng cách. Cùng theo dõi những lưu ý khi sử dụng kính áp tròng trong bài viết dưới đây.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/11/nhung-dieu-can-luu-y-cho-cac-ban-deo-kinh-ap-trong-thuong-xuyen.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item" hidden>
+        <a class="thumb" href="https://matngoc.vn/tin-tuc/10/nen-mua-kinh-ap-trong-nao-de-dam-bao-tot-cho-doi-mat-cua-ban.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/nen-mua-kinh-ap-trong-nao-de-dam-bao-tot-cho-doi-mat-cua-ban.jpg" alt="Nên mua kính áp tròng nào để đảm bảo tốt cho đôi mắt của bạn"></a>
+        <div class="nc">
+          <h3><a href="https://matngoc.vn/tin-tuc/10/nen-mua-kinh-ap-trong-nao-de-dam-bao-tot-cho-doi-mat-cua-ban.html" target="_blank">Nên mua kính áp tròng nào để đảm bảo tốt cho đôi mắt của bạn</a></h3>
+          <time class="date">19/09/2022</time>
+          <p class="excerpt">Hiện nay rất nhiều hãng kính áp tròng nhập khẩu có kiểm định và bán tại Việt Nam. Các sản phẩm chủ yếu có xuất xứ từ Mỹ, Anh, Hàn, Nhật, Thái Lan. Tuy nhiên có rất nhiều sản phẩm kính áp tròng được xách tay từ Thái Lan, Campuchia, Malaysia mà không được kiểm định chất lượng. Vậy nên điều cần thiết khi bạn chọn mua kính áp tròng, nên tìm đến 1 hãng nhập khẩu uy tín để được chăm sóc tốt hơn.</p>
+          <a class="more" href="https://matngoc.vn/tin-tuc/10/nen-mua-kinh-ap-trong-nao-de-dam-bao-tot-cho-doi-mat-cua-ban.html" target="_blank">Xem thêm →</a>
+        </div>
+      </article>
+    </div>
+    <div class="news-actions">
+      <button type="button" class="more-btn" id="newsHomeMore" onclick="moreNews('newsHome','newsHomeMore',4)">Xem thêm tin tức <span>(còn 41)</span></button>
+      <a class="news-all" href="tin-tuc.html">Xem tất cả tin tức →</a>
     </div>
   </div>
 </section>
@@ -604,6 +980,7 @@ section{padding:35px 0}
   </div>
 </section>
 
+<!--MAIN-END-->
 <!-- FOOTER -->
 <footer id="lien-he">
   <div class="tt-footer">
@@ -775,12 +1152,29 @@ function onSuccess(o,f){
   document.getElementById('cartList').hidden=true;document.querySelector('.cart-foot').hidden=true;
   okBox.hidden=false;okBox.scrollTop=0;
 }
+/* ===== TIN TỨC: hiện thêm 4 tin mỗi lần ===== */
+function moreNews(listId,btnId,step){
+  const hid=[...document.querySelectorAll('#'+listId+' .news-item[hidden]')];
+  hid.slice(0,step).forEach(el=>el.hidden=false);
+  const left=hid.length-step,btn=document.getElementById(btnId);
+  if(left<=0)btn.hidden=true;else btn.querySelector('span').textContent='(còn '+left+')';
+}
+/* ===== MENU: chọn xong tự thu gọn ===== */
+document.querySelectorAll('.menu .mwrap>ul a').forEach(a=>a.addEventListener('click',()=>{
+  const li=a.closest('li');
+  if(innerWidth<=768&&a.parentNode.querySelector('.sub')&&!a.closest('.sub'))return; // mục "Sản phẩm" trên mobile: chỉ mở danh mục con
+  document.querySelector('.menu .mwrap>ul').classList.remove('open');
+  document.querySelectorAll('.menu li.open').forEach(x=>x.classList.remove('open'));
+  const top=a.closest('.mwrap>ul>li');if(top){top.classList.add('closed');top.addEventListener('mouseleave',()=>top.classList.remove('closed'),{once:true})}
+  if(document.activeElement)document.activeElement.blur();
+}));
+document.addEventListener('click',e=>{const ul=document.querySelector('.menu .mwrap>ul');if(ul.classList.contains('open')&&!e.target.closest('.menu'))ul.classList.remove('open')});
 function newOrder(){okBox.hidden=true;document.getElementById('cartList').hidden=false;document.querySelector('.cart-foot').hidden=false;LAST_ORDER_TEXT='';renderCart();closeCart()}
 let tmr;function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(tmr);tmr=setTimeout(()=>t.classList.remove('show'),2200)}
 // tabs
 function showTab(t){const names=TABS[t];document.getElementById('tabGrid').innerHTML=names.map(n=>P.find(p=>p.name.trim()==n.trim())).filter(Boolean).map(card).join('')}
 document.querySelectorAll('.tab-li').forEach(li=>li.onclick=()=>{document.querySelector('.tab-li.active').classList.remove('active');li.classList.add('active');showTab(li.dataset.type)});
-showTab('spmoi');
+if(document.getElementById('tabGrid'))showTab('spmoi');
 // all products
 let page=1,LIST=[];const PER=4;            // hiển thị 4 sản phẩm, mỗi lần "Xem thêm" thêm 4
 function filtered(){
@@ -805,20 +1199,20 @@ function loadMore(){                          // thêm 4 sản phẩm tiếp the
   document.getElementById('allGrid').insertAdjacentHTML('beforeend',LIST.slice(from,page*PER).map(card).join(''));
   moreUI();
 }
-renderAll();
+if(document.getElementById('allGrid'))renderAll();
 function doSearch(v){document.getElementById('q').value=v;renderAll();document.getElementById('san-pham').scrollIntoView({behavior:'smooth'})}
 // sliders
 function slider(id,ms){const el=document.getElementById(id),wrap=el.querySelector('.slides'),n=wrap.children.length,d=el.querySelector('.dots');let c=0;
   for(let i=0;i<n;i++){const s=document.createElement('span');s.onclick=()=>go(i);d.appendChild(s)}
   function go(i){c=(i+n)%n;wrap.style.transform=`translateX(-${c*100}%)`;[...d.children].forEach((x,j)=>x.classList.toggle('on',j==c))}
   el.querySelector('.l').onclick=()=>go(c-1);el.querySelector('.r').onclick=()=>go(c+1);go(0);setInterval(()=>go(c+1),ms)}
-slider('sl1',5000);slider('sl2',4500);
+if(document.getElementById('sl1'))slider('sl1',5000);if(document.getElementById('sl2'))slider('sl2',4500);
 // videos
-const VIDS=[['gSEQsDvlZtk','ĐEO KÍNH ÁP TRÒNG KHÔNG ĐỘ: ĐẸP TỰ NHIÊN NHƯ SAO HÀN','b1'],['y2pxAQtMEuo','Kính Áp Tròng Eye Vina: Che Khuyết Điểm, Đẹp Tự Nhiên Tỏa Sáng','n1'],['Xef3CCFE8AI','Kính áp tròng thẩm mỹ, lens che khuyết điểm, Iris Contact Lens','b4'],['y2pxAQtMEuo','Trang điểm cùng kính áp tròng cho đôi mắt sáng','b3'],['Y-4TGrcsL5Y','Green Lens Version 3','b5'],['wwYE2EbF11Y','Gray Lens Version 2','b2'],['k50ccV56cLk','Brown Lens Version 1','n0'],['lHnM6nMQkb0','Nhược thị: nguyên nhân và cách điều trị','n3'],['O545zT3DMWY','Kính thời trang Ray-Ban','n4'],['qFRBRk41dVo','Dung dịch ngâm kính áp tròng X2 – 5','c5']];
+const VIDS=[['gSEQsDvlZtk','ĐEO KÍNH ÁP TRÒNG KHÔNG ĐỘ: ĐẸP TỰ NHIÊN NHƯ SAO HÀN','b1'],['y2pxAQtMEuo','Kính Áp Tròng Eye Vina: Che Khuyết Điểm, Đẹp Tự Nhiên Tỏa Sáng','c2'],['Xef3CCFE8AI','Kính áp tròng thẩm mỹ, lens che khuyết điểm, Iris Contact Lens','b4'],['y2pxAQtMEuo','Trang điểm cùng kính áp tròng cho đôi mắt sáng','b3'],['Y-4TGrcsL5Y','Green Lens Version 3','b5'],['wwYE2EbF11Y','Gray Lens Version 2','b2'],['k50ccV56cLk','Brown Lens Version 1','c4'],['lHnM6nMQkb0','Nhược thị: nguyên nhân và cách điều trị','c3'],['O545zT3DMWY','Kính thời trang Ray-Ban','c1'],['qFRBRk41dVo','Dung dịch ngâm kính áp tròng X2 – 5','c5']];
 const VIMG=new Proxy({},{get:(o,k)=>document.getElementById('img-'+k).src});
-document.querySelectorAll('[data-img]').forEach(e=>e.src=document.getElementById('img-'+e.dataset.img).src);
+document.querySelectorAll('[data-img]').forEach(e=>{const s=document.getElementById('img-'+e.dataset.img);if(s)e.src=s.src});
 const vs=document.getElementById('vs');
-vs.innerHTML=VIDS.map(([id,t,k])=>`<div class="item-video" onclick="openV('${id}')"><div class="vt" style="background-image:url(${VIMG[k]})"><span class="play"></span></div><h3>${t}</h3></div>`).join('');
+if(vs)vs.innerHTML=VIDS.map(([id,t,k])=>`<div class="item-video" onclick="openV('${id}')"><div class="vt" style="background-image:url(${VIMG[k]})"><span class="play"></span></div><h3>${t}</h3></div>`).join('');
 function openV(id){document.getElementById('vbox').innerHTML=`<iframe src="https://www.youtube.com/embed/${id}?autoplay=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;modal.classList.add('open')}
 function closeV(){modal.classList.remove('open');document.getElementById('vbox').innerHTML=''}
 // misc
