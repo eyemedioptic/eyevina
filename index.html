@@ -137,9 +137,11 @@ section{padding:35px 0}
 .toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap}
 .toolbar input,.toolbar select{border:1px solid #ddd;border-radius:20px;padding:8px 16px;outline:0;font-size:14px}
 .toolbar input{flex:1;max-width:360px}
-.pagination{display:flex;justify-content:center;gap:6px;margin-top:28px;list-style:none;flex-wrap:wrap}
-.pagination li{min-width:36px;height:36px;display:grid;place-items:center;border:1px solid #ddd;border-radius:50%;cursor:pointer;padding:0 8px}
-.pagination li.on,.pagination li:hover{background:#333;color:#fff;border-color:#333}
+.more-wrap{text-align:center;margin-top:26px}
+.more-btn{background:#fff;border:1px solid #333;color:#333;border-radius:30px;padding:12px 34px;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;transition:.2s}
+.more-btn span{font-weight:400;color:#888}
+.more-btn:hover{background:#333;color:#fff}.more-btn:hover span{color:#ddd}
+.more-btn[hidden]{display:none}
 .page_info{color:#777;text-align:center;margin-top:10px;font-size:13px}
 /* ===== VIDEO ===== */
 .video-wrap{position:relative}
@@ -441,13 +443,13 @@ section{padding:35px 0}
     <div class="title-h2"><h2>Sản phẩm</h2></div>
     <p class="sub-title">Lens Hà Nội đủ màu & độ cận – giá niêm yết rõ ràng, giao nhanh nội thành</p>
     <div class="toolbar">
-      <input id="q" placeholder="Tìm theo tên: choco, gray, clear, nước ngâm..." oninput="page=1;renderAll()">
-      <select id="sortSel" onchange="page=1;renderAll()">
+      <input id="q" placeholder="Tìm theo tên: choco, gray, clear, nước ngâm..." oninput="renderAll()">
+      <select id="sortSel" onchange="renderAll()">
         <option value="">Mới nhất</option><option value="asc">Giá tăng dần</option><option value="desc">Giá giảm dần</option><option value="sale">Đang giảm giá</option>
       </select>
     </div>
     <div class="grid-product" id="allGrid"></div>
-    <ul class="pagination" id="pager"></ul>
+    <div class="more-wrap"><button type="button" class="more-btn" id="moreBtn" onclick="loadMore()">Xem thêm sản phẩm</button></div>
     <div class="page_info" id="pinfo"></div>
   </div>
 </section>
@@ -780,21 +782,31 @@ function showTab(t){const names=TABS[t];document.getElementById('tabGrid').inner
 document.querySelectorAll('.tab-li').forEach(li=>li.onclick=()=>{document.querySelector('.tab-li.active').classList.remove('active');li.classList.add('active');showTab(li.dataset.type)});
 showTab('spmoi');
 // all products
-let page=1;const PER=12;
-function renderAll(){
+let page=1,LIST=[];const PER=4;            // hiển thị 4 sản phẩm, mỗi lần "Xem thêm" thêm 4
+function filtered(){
   const q=document.getElementById('q').value.trim().toLowerCase(),s=sortSel.value;
   let L=P.filter(p=>!q||p.name.toLowerCase().includes(q));
   if(s=='asc')L=[...L].sort((a,b)=>num(a.price)-num(b.price));
   if(s=='desc')L=[...L].sort((a,b)=>num(b.price)-num(a.price));
   if(s=='sale')L=L.filter(p=>p.old&&num(p.old)>num(p.price));
-  const pages=Math.max(1,Math.ceil(L.length/PER));page=Math.min(page,pages);
-  document.getElementById('allGrid').innerHTML=L.slice((page-1)*PER,page*PER).map(card).join('')||'<p style="grid-column:1/-1;text-align:center;color:#777">Không tìm thấy sản phẩm phù hợp.</p>';
-  let h='';for(let i=1;i<=pages;i++)h+=`<li class="${i==page?'on':''}" onclick="page=${i};renderAll();document.getElementById('san-pham').scrollIntoView({behavior:'smooth'})">${i}</li>`;
-  document.getElementById('pager').innerHTML=pages>1?h:'';
-  document.getElementById('pinfo').textContent=`Trang ${page} / ${pages} – ${L.length} sản phẩm`;
+  return L}
+function moreUI(){
+  const shown=Math.min(page*PER,LIST.length),left=LIST.length-shown,btn=document.getElementById('moreBtn');
+  btn.hidden=left<=0;btn.innerHTML=`Xem thêm sản phẩm <span>(còn ${left})</span>`;
+  document.getElementById('pinfo').textContent=LIST.length?`Đang hiển thị ${shown} / ${LIST.length} sản phẩm`:'';
+}
+function renderAll(){                        // tìm kiếm / sắp xếp -> quay về 4 sản phẩm đầu
+  page=1;LIST=filtered();
+  document.getElementById('allGrid').innerHTML=LIST.slice(0,PER).map(card).join('')||'<p style="grid-column:1/-1;text-align:center;color:#777">Không tìm thấy sản phẩm phù hợp.</p>';
+  moreUI();
+}
+function loadMore(){                          // thêm 4 sản phẩm tiếp theo, không tải lại các thẻ đã có
+  const from=page*PER;page++;
+  document.getElementById('allGrid').insertAdjacentHTML('beforeend',LIST.slice(from,page*PER).map(card).join(''));
+  moreUI();
 }
 renderAll();
-function doSearch(v){document.getElementById('q').value=v;page=1;renderAll();document.getElementById('san-pham').scrollIntoView({behavior:'smooth'})}
+function doSearch(v){document.getElementById('q').value=v;renderAll();document.getElementById('san-pham').scrollIntoView({behavior:'smooth'})}
 // sliders
 function slider(id,ms){const el=document.getElementById(id),wrap=el.querySelector('.slides'),n=wrap.children.length,d=el.querySelector('.dots');let c=0;
   for(let i=0;i<n;i++){const s=document.createElement('span');s.onclick=()=>go(i);d.appendChild(s)}
