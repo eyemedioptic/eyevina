@@ -693,7 +693,7 @@ function renderCart(){if(!document.getElementById('okBox').hidden&&!Object.keys(
 function openCart(){if(Object.keys(CART).length||document.getElementById('okBox').hidden){document.getElementById('okBox').hidden=true;document.getElementById('cartForm').hidden=false;document.querySelector('.cart-total').hidden=false}renderCart();document.getElementById('cart').classList.add('open')}
 function closeCart(){document.getElementById('cart').classList.remove('open')}
 /* ===== GỬI ĐƠN HÀNG → Google Sheet + Email (Google Apps Script) ===== */
-const ORDER_ENDPOINT='/*ORDER_ENDPOINT*/';
+const ORDER_ENDPOINT='https://script.google.com/macros/s/AKfycbxkZZ8Z_9Byjm2a4iALMFfQkJl4oo-PesnKtDKoDqj4SdcPwxTwliu_VzsyCjOZuE8OWA/exec';
 let LAST_ORDER_TEXT='';
 const pcode=p=>{const m=String(p.href).match(/\/(\d+)\//);return m?'SP'+m[1]:''};
 function buildOrder(f){

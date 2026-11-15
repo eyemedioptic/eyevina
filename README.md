@@ -8,4 +8,4 @@ Website tĩnh cho https://eyevina.com (GitHub Pages).
 - `CNAME` – tên miền eyevina.com
 
 ## Nhận đơn hàng (Google Sheet + Email)
-`apps-script/Code.gs` – dán vào Apps Script của Sheet "Đơn hàng eyevina.com", triển khai dạng Ứng dụng web (Thực thi: Tôi, Truy cập: Bất kỳ ai), rồi gắn URL `/exec` vào hằng `ORDER_ENDPOINT` trong `index.html`.
+`apps-script/Code.gs` – dán vào Apps Script của Sheet "Đơn hàng eyevina.com", triển khai dạng Ứng dụng web (Thực thi: Tôi, Truy cập: Bất kỳ ai), URL `/exec` đã gắn vào hằng `ORDER_ENDPOINT` trong `index.html`. Khi sửa Code.gs: Triển khai › Quản lý triển khai › sửa › Phiên bản mới (giữ nguyên URL).
