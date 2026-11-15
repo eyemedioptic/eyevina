@@ -297,6 +297,23 @@ section{padding:35px 0}
 .pd-trust{list-style:none;display:grid;gap:6px;font-size:14px;color:#555;border-top:1px dashed #ddd;padding-top:14px}
 .pd-related{margin-top:46px}
 .buybar{display:none}
+/* ===== KHUNG QUẢNG CÁO EYEMEDI ===== */
+.adbox{max-width:600px;margin:22px auto 26px;border:1px solid #f1d2d6;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 6px 20px rgba(222,24,32,.08)}
+.ad-head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding:9px 14px;background:#fff4f5;font-size:14px;color:#333}
+.ad-head b{color:var(--red)}.ad-head small{color:#888;font-size:12px}
+.ad-view{position:relative;overflow:hidden}
+.ad-track{display:flex;will-change:transform}
+.ad-slide{flex:0 0 100%;position:relative;display:block;text-decoration:none!important;color:#fff!important}
+.ad-slide img{width:100%;height:auto;aspect-ratio:5/4;object-fit:cover;display:block}
+.ad-cap{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:26px 16px 12px;background:linear-gradient(transparent,rgba(0,0,0,.72))}
+.ad-cap b{font-size:20px;line-height:1.25;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.4)}
+.ad-cap em{font-style:normal;flex:none;background:var(--red);color:#fff;border-radius:20px;padding:6px 14px;font-size:13.5px;font-weight:700}
+.ad-nav{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.9);box-shadow:0 2px 8px rgba(0,0,0,.2);font-size:20px;cursor:pointer;display:grid;place-items:center;color:#333;z-index:2}
+.ad-nav.l{left:10px}.ad-nav.r{right:10px}
+.ad-dots{display:flex;justify-content:center;gap:7px;padding:10px}
+.ad-dots button{width:9px;height:9px;border-radius:50%;border:0;background:#ddd;cursor:pointer;padding:0}
+.ad-dots button.on{background:var(--red);width:24px;border-radius:5px}
+@media(max-width:768px){.adbox{margin:18px -4px 22px}.ad-cap b{font-size:16.5px}.ad-cap em{font-size:12.5px;padding:5px 11px}}
 /* ===== BÀI VIẾT ===== */
 .art-wrap{padding:22px 0 40px}
 .art{max-width:860px}
@@ -1167,6 +1184,22 @@ function prodSlider(id,n){
   let x0=null;box.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;paused=true},{passive:true});
   box.addEventListener('touchend',e=>{if(x0!==null){const dx=e.changedTouches[0].clientX-x0;if(dx<-40)next();else if(dx>40)prev()}x0=null;paused=false;play()},{passive:true});
   play();
+}
+/* ===== SLIDER QUẢNG CÁO: 1 ảnh/lần, chạy phải -> trái, bấm ảnh mở link ===== */
+function adSlider(id){
+  const box=document.getElementById(id);if(!box)return;
+  const track=box.querySelector('.ad-track'),slides=[...track.children],dots=[...box.querySelectorAll('.ad-dots button')],n=slides.length;
+  let i=0,timer=null,paused=false,moved=false;
+  function go(k){i=(k+n)%n;track.style.transition='transform .6s ease';track.style.transform=`translateX(-${i*100}%)`;dots.forEach((d,j)=>d.classList.toggle('on',j===i))}
+  const play=()=>{clearInterval(timer);timer=setInterval(()=>{if(!paused&&!document.hidden)go(i+1)},4000)};
+  box.querySelector('.ad-nav.r').onclick=()=>{go(i+1);play()};box.querySelector('.ad-nav.l').onclick=()=>{go(i-1);play()};
+  dots.forEach((d,j)=>d.onclick=()=>{go(j);play()});
+  box.addEventListener('mouseenter',()=>paused=true);box.addEventListener('mouseleave',()=>paused=false);
+  let x0=null;box.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;moved=false;paused=true},{passive:true});
+  box.addEventListener('touchmove',e=>{if(x0!==null&&Math.abs(e.touches[0].clientX-x0)>10)moved=true},{passive:true});
+  box.addEventListener('touchend',e=>{if(x0!==null){const dx=e.changedTouches[0].clientX-x0;if(dx<-40)go(i+1);else if(dx>40)go(i-1)}x0=null;paused=false;play()},{passive:true});
+  slides.forEach(a=>a.addEventListener('click',e=>{if(moved){e.preventDefault();moved=false}}));  // vuốt không mở link
+  go(0);play();
 }
 function newOrder(){okBox.hidden=true;document.getElementById('cartList').hidden=false;document.querySelector('.cart-foot').hidden=false;LAST_ORDER_TEXT='';renderCart();closeCart()}
 let tmr;function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(tmr);tmr=setTimeout(()=>t.classList.remove('show'),2200)}
