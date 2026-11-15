@@ -266,8 +266,18 @@ section{padding:35px 0}
 .cart-total{display:flex;justify-content:space-between;margin-bottom:10px;font-size:16px}
 .cart-total b{color:var(--red)}
 #cartForm input{width:100%;border:1px solid #ddd;border-radius:6px;padding:9px 12px;margin-bottom:8px;outline:0;font-size:14px}
-.cta{width:100%;background:#0068ff;color:#fff;border:0;border-radius:24px;padding:12px;font-weight:700;cursor:pointer}
-.cta2{display:block;text-align:center;margin-top:8px;color:#333;font-size:13px;text-decoration:underline}
+.cta{width:100%;background:#de1820;color:#fff;border:0;border-radius:24px;padding:12px;font-weight:700;cursor:pointer}
+.cta2{display:block;text-align:center;margin-top:8px;color:#0068ff;font-size:14px;font-weight:600;text-decoration:underline}
+.eyes{display:flex;gap:8px}
+.eyes label{flex:1;min-width:0}
+.eyes span{display:block;font-size:12.5px;font-weight:600;color:#444;margin-bottom:2px}
+.hp{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0}
+.cta:disabled{opacity:.6;cursor:wait}
+.ok-box{text-align:center;padding:6px 0}
+.ok-box .ok-ic{width:52px;height:52px;border-radius:50%;background:#2e9d4a;color:#fff;font-size:28px;display:grid;place-items:center;margin:0 auto 8px}
+.ok-box b{font-size:18px}
+.ok-box p{color:#555;font-size:14px;margin:6px 0 12px}
+.ok-box a.cta{display:block;text-decoration:none}
 .toast{position:fixed;left:50%;top:70px;bottom:auto;transform:translate(-50%,-20px);background:#222;color:#fff;padding:10px 18px;border-radius:24px;font-size:14px;opacity:0;transition:.3s;z-index:1100;max-width:90vw;text-align:center;pointer-events:none}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 /* ===== RESPONSIVE ===== */
@@ -621,14 +631,25 @@ section{padding:35px 0}
     <div class="cart-list" id="cartList"></div>
     <div class="cart-foot">
       <div class="cart-total"><span>Tạm tính</span><b id="cartTotal">0 đ</b></div>
-      <form id="cartForm" onsubmit="return checkout(this)">
+      <form id="cartForm" onsubmit="checkout(this);return false">
         <input name="ten" required placeholder="Họ và tên *">
         <input name="sdt" required type="tel" pattern="[0-9 +]{9,13}" placeholder="Số điện thoại *">
         <input name="dc" required placeholder="Địa chỉ nhận hàng *">
-        <input name="gc" placeholder="Ghi chú (độ cận, ngày giao...)">
-        <button class="cta">ĐẶT HÀNG QUA ZALO</button>
-        <a class="cta2" href="tel:0989666559">Hoặc gọi đặt hàng: 0989 666 559</a>
+        <div class="eyes">
+          <label><span>Độ mắt phải</span><input name="mp" maxlength="40" placeholder="VD: -2.50 / 0"></label>
+          <label><span>Độ mắt trái</span><input name="mt" maxlength="40" placeholder="VD: -2.75 / 0"></label>
+        </div>
+        <input name="website_hp" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+        <button class="cta" id="orderBtn">ĐẶT HÀNG</button>
+        <a class="cta2" href="https://zalo.me/0989666559" target="_blank" onclick="return zaloConfirm()">Xác nhận qua Zalo 0989 666 559</a>
       </form>
+      <div class="ok-box" id="okBox" hidden>
+        <div class="ok-ic">✓</div>
+        <b>Đặt hàng thành công!</b>
+        <p>Mã đơn: <strong id="okId"></strong><br>EYE VINA sẽ gọi xác nhận trong thời gian sớm nhất.</p>
+        <a class="cta" href="https://zalo.me/0989666559" target="_blank" onclick="return zaloConfirm()">Xác nhận qua Zalo 0989 666 559</a>
+        <button class="cta2" style="border:0;background:none;width:100%;cursor:pointer" onclick="closeCart()">Tiếp tục mua sắm</button>
+      </div>
     </div>
   </aside>
 </div>
@@ -660,7 +681,7 @@ function addCart(i,btn){CART[i]=(CART[i]||0)+1;saveCart();renderCart();toast('Đ
   const cb=document.getElementById('cartBtn');cb.classList.remove('bump');void cb.offsetWidth;cb.classList.add('bump');
   if(btn){btn.classList.add('added');setTimeout(()=>btn.classList.remove('added'),900)}}
 function qty(i,d){CART[i]=(CART[i]||0)+d;if(CART[i]<=0)delete CART[i];saveCart();renderCart()}
-function renderCart(){
+function renderCart(){if(!document.getElementById('okBox').hidden&&!Object.keys(CART).length)return;
   const ids=Object.keys(CART);let total=0;
   document.getElementById('cartList').innerHTML=ids.length?ids.map(i=>{const p=P[i],q=CART[i],sub=num(p.price)*q;total+=sub;
     return `<div class="ci"><img src="${p.src}" alt="${p.name}"><div class="cinfo"><b>${p.name}</b><span class="price">${p.price}</span>
@@ -669,14 +690,43 @@ function renderCart(){
   document.getElementById('cartTotal').textContent=fmt(total);
   document.getElementById('cartForm').style.display=ids.length?'block':'none';
 }
-function openCart(){renderCart();document.getElementById('cart').classList.add('open')}
+function openCart(){if(Object.keys(CART).length||document.getElementById('okBox').hidden){document.getElementById('okBox').hidden=true;document.getElementById('cartForm').hidden=false;document.querySelector('.cart-total').hidden=false}renderCart();document.getElementById('cart').classList.add('open')}
 function closeCart(){document.getElementById('cart').classList.remove('open')}
-function orderText(f){const ids=Object.keys(CART);let total=0;
-  const lines=ids.map(i=>{const s=num(P[i].price)*CART[i];total+=s;return `- ${P[i].name} x${CART[i]} = ${fmt(s)}`});
-  return `ĐƠN HÀNG EYE VINA\n${lines.join('\n')}\nTổng: ${fmt(total)}\nKhách: ${f.ten.value}\nSĐT: ${f.sdt.value}\nĐịa chỉ: ${f.dc.value}\nGhi chú: ${f.gc.value||'-'}`}
-function checkout(f){const txt=orderText(f);
-  const done=()=>{toast('Đã sao chép đơn hàng – dán vào Zalo để gửi shop');window.open('https://zalo.me/0989666559','_blank')};
-  if(navigator.clipboard)navigator.clipboard.writeText(txt).then(done,done);else done();return false}
+/* ===== GỬI ĐƠN HÀNG → Google Sheet + Email (Google Apps Script) ===== */
+const ORDER_ENDPOINT='/*ORDER_ENDPOINT*/';
+let LAST_ORDER_TEXT='';
+const pcode=p=>{const m=String(p.href).match(/\/(\d+)\//);return m?'SP'+m[1]:''};
+function buildOrder(f){
+  const d=new Date(),z=n=>String(n).padStart(2,'0');
+  const id='EV'+String(d.getFullYear()).slice(2)+z(d.getMonth()+1)+z(d.getDate())+'-'+z(d.getHours())+z(d.getMinutes())+Math.floor(Math.random()*90+10);
+  const items=Object.keys(CART).map(i=>({code:pcode(P[i]),name:P[i].name,qty:CART[i],price:num(P[i].price)}));
+  return {orderId:id,website:location.hostname||'eyevina.com',items,
+    total:items.reduce((s,it)=>s+it.qty*it.price,0),
+    name:f.ten.value.trim(),phone:f.sdt.value.trim(),address:f.dc.value.trim(),
+    rightEye:f.mp.value.trim(),leftEye:f.mt.value.trim(),website_hp:f.website_hp.value};
+}
+function orderText(o){
+  return `ĐƠN HÀNG ${o.orderId} – từ ${o.website}\n`+o.items.map(it=>`- ${it.code} ${it.name} x${it.qty} = ${fmt(it.qty*it.price)}`).join('\n')+
+  `\nTổng: ${fmt(o.total)}\nHọ tên: ${o.name}\nĐiện thoại: ${o.phone}\nĐịa chỉ nhận hàng: ${o.address}\nĐộ mắt phải: ${o.rightEye||'—'}\nĐộ mắt trái: ${o.leftEye||'—'}`}
+function zaloConfirm(){
+  let txt=LAST_ORDER_TEXT;
+  if(!txt){const f=document.getElementById('cartForm');if(Object.keys(CART).length)txt=orderText(buildOrder(f))}
+  if(txt&&navigator.clipboard){navigator.clipboard.writeText(txt).then(()=>toast('Đã sao chép đơn hàng – dán vào Zalo để gửi shop'),()=>{})}
+  return true}
+async function checkout(f){
+  const o=buildOrder(f);if(!o.items.length)return false;
+  const btn=document.getElementById('orderBtn');btn.disabled=true;btn.textContent='ĐANG GỬI ĐƠN...';
+  LAST_ORDER_TEXT=orderText(o);
+  try{
+    if(!ORDER_ENDPOINT||ORDER_ENDPOINT.indexOf('/*')===0)throw new Error('no-endpoint');
+    await fetch(ORDER_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(o)});
+    CART={};saveCart();renderCart();
+    document.getElementById('okId').textContent=o.orderId;
+    f.hidden=true;document.getElementById('okBox').hidden=false;f.reset();document.querySelector('.cart-total').hidden=true;document.getElementById('cartList').innerHTML='';
+  }catch(err){
+    toast('Chưa gửi được đơn – vui lòng xác nhận qua Zalo 0989 666 559');
+  }finally{btn.disabled=false;btn.textContent='ĐẶT HÀNG'}
+  return false}
 let tmr;function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(tmr);tmr=setTimeout(()=>t.classList.remove('show'),2200)}
 // tabs
 function showTab(t){const names=TABS[t];document.getElementById('tabGrid').innerHTML=names.map(n=>P.find(p=>p.name.trim()==n.trim())).filter(Boolean).map(card).join('')}
