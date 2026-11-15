@@ -46,6 +46,10 @@ function doPost(e) {
     if (!order.name || !/^[0-9+ ]{9,15}$/.test(order.phone) || !order.address || !order.items.length) {
       return json_({ ok: false, error: 'Thiếu thông tin đơn hàng' });
     }
+    // Chống trùng đơn: cùng mã đơn gửi lại (do mạng chậm) chỉ ghi 1 lần
+    const cache = CacheService.getScriptCache();
+    if (cache.get('ord_' + order.id)) return json_({ ok: true, orderId: order.id, duplicate: true });
+
     const total = order.items.reduce(function (s, it) { return s + it.qty * it.price; }, 0);
 
     // Ghi vào Sheet – mỗi sản phẩm 1 dòng, cùng mã đơn
@@ -64,6 +68,7 @@ function doPost(e) {
       htmlBody: emailHtml_(order, total, now),
       name: 'EYE VINA – Đơn hàng website'
     });
+    cache.put('ord_' + order.id, '1', 21600); // nhớ 6 giờ
     return json_({ ok: true, orderId: order.id });
   } catch (err) {
     return json_({ ok: false, error: String(err) });

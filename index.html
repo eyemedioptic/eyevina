@@ -273,11 +273,25 @@ section{padding:35px 0}
 .eyes span{display:block;font-size:12.5px;font-weight:600;color:#444;margin-bottom:2px}
 .hp{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0}
 .cta:disabled{opacity:.6;cursor:wait}
-.ok-box{text-align:center;padding:6px 0}
-.ok-box .ok-ic{width:52px;height:52px;border-radius:50%;background:#2e9d4a;color:#fff;font-size:28px;display:grid;place-items:center;margin:0 auto 8px}
-.ok-box b{font-size:18px}
-.ok-box p{color:#555;font-size:14px;margin:6px 0 12px}
-.ok-box a.cta{display:block;text-decoration:none}
+.ok-view{flex:1;overflow-y:auto;padding:18px 16px}
+.ok-card{background:#e8f6ee;border:1px solid #a8dcbc;border-radius:14px;padding:16px 18px;color:#1e5b3a;font-size:14.5px;line-height:1.6;animation:pop .35s}
+@keyframes pop{0%{transform:scale(.96);opacity:0}100%{transform:none;opacity:1}}
+.ok-card p{margin:0 0 10px}.ok-card p:last-child{margin:0}
+.ok-card .ok-title{font-weight:700;font-size:16px;margin-bottom:6px}
+.ok-card a{color:#0b57d0;text-decoration:underline}
+.ok-card ul{margin:0 0 10px 20px;padding:0}
+.ok-card #okRecv,.ok-card #okEyes{margin-bottom:4px}
+.ok-urgent{margin:14px 2px;font-size:13.5px;color:#555}
+.ok-urgent a{color:#0068ff;font-weight:600;text-decoration:underline}
+.ok-btn{background:#333;color:#fff;border:0;border-radius:30px;padding:13px 26px;font-weight:700;font-size:15px;cursor:pointer;font-family:inherit}
+.ok-btn:hover{background:#000}
+.form-msg{background:#fdecea;color:#b3261e;border-radius:6px;padding:8px 10px;font-size:13px;margin:0 0 8px}
+.urgent-sm{text-align:center;font-size:13px;margin-top:8px;color:#555}
+.urgent-sm a{color:#0068ff;font-weight:600;text-decoration:underline}
+.cta.loading{opacity:.75;cursor:wait}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:sp .8s linear infinite;vertical-align:-2px;margin-right:8px}
+@keyframes sp{to{transform:rotate(360deg)}}
+#cartForm input:disabled{background:#f3f3f3}
 .toast{position:fixed;left:50%;top:70px;bottom:auto;transform:translate(-50%,-20px);background:#222;color:#fff;padding:10px 18px;border-radius:24px;font-size:14px;opacity:0;transition:.3s;z-index:1100;max-width:90vw;text-align:center;pointer-events:none}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 /* ===== RESPONSIVE ===== */
@@ -628,6 +642,19 @@ section{padding:35px 0}
   <div class="cart-bg" onclick="closeCart()"></div>
   <aside class="cart-panel">
     <div class="cart-head"><b>GIỎ HÀNG</b><button onclick="closeCart()" aria-label="Đóng">×</button></div>
+    <div class="ok-view" id="okBox" hidden>
+      <div class="ok-card" role="status" aria-live="polite">
+        <p class="ok-title">✓ Đã gửi đơn hàng thành công!</p>
+        <p>EYE VINA sẽ liên hệ xác nhận sớm. Đơn đã khóa, không thể chỉnh sửa hoặc thu hồi. Cần hỗ trợ, gọi <a href="tel:0989666559">0989 666 559</a>.</p>
+        <p>Mã đơn: <b id="okId"></b></p>
+        <ul id="okItems"></ul>
+        <p><b>Tạm tính: <span id="okTotal"></span></b></p>
+        <p id="okRecv"></p>
+        <p id="okEyes"></p>
+      </div>
+      <p class="ok-urgent">⚡ Đơn cần giao gấp? <a href="https://zalo.me/0989666559" target="_blank" onclick="return zaloConfirm()">Xác nhận qua Zalo 0989 666 559</a></p>
+      <button class="ok-btn" type="button" onclick="newOrder()">Tiếp tục lựa chọn</button>
+    </div>
     <div class="cart-list" id="cartList"></div>
     <div class="cart-foot">
       <div class="cart-total"><span>Tạm tính</span><b id="cartTotal">0 đ</b></div>
@@ -641,15 +668,9 @@ section{padding:35px 0}
         </div>
         <input name="website_hp" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
         <button class="cta" id="orderBtn">ĐẶT HÀNG</button>
-        <a class="cta2" href="https://zalo.me/0989666559" target="_blank" onclick="return zaloConfirm()">Xác nhận qua Zalo 0989 666 559</a>
+        <p class="form-msg" id="formMsg" role="alert" hidden></p>
+        <p class="urgent-sm">⚡ Đơn cần giao gấp? <a href="https://zalo.me/0989666559" target="_blank" onclick="return zaloConfirm()">Xác nhận qua Zalo 0989 666 559</a></p>
       </form>
-      <div class="ok-box" id="okBox" hidden>
-        <div class="ok-ic">✓</div>
-        <b>Đặt hàng thành công!</b>
-        <p>Mã đơn: <strong id="okId"></strong><br>EYE VINA sẽ gọi xác nhận trong thời gian sớm nhất.</p>
-        <a class="cta" href="https://zalo.me/0989666559" target="_blank" onclick="return zaloConfirm()">Xác nhận qua Zalo 0989 666 559</a>
-        <button class="cta2" style="border:0;background:none;width:100%;cursor:pointer" onclick="closeCart()">Tiếp tục mua sắm</button>
-      </div>
     </div>
   </aside>
 </div>
@@ -681,7 +702,7 @@ function addCart(i,btn){CART[i]=(CART[i]||0)+1;saveCart();renderCart();toast('Đ
   const cb=document.getElementById('cartBtn');cb.classList.remove('bump');void cb.offsetWidth;cb.classList.add('bump');
   if(btn){btn.classList.add('added');setTimeout(()=>btn.classList.remove('added'),900)}}
 function qty(i,d){CART[i]=(CART[i]||0)+d;if(CART[i]<=0)delete CART[i];saveCart();renderCart()}
-function renderCart(){if(!document.getElementById('okBox').hidden&&!Object.keys(CART).length)return;
+function renderCart(){
   const ids=Object.keys(CART);let total=0;
   document.getElementById('cartList').innerHTML=ids.length?ids.map(i=>{const p=P[i],q=CART[i],sub=num(p.price)*q;total+=sub;
     return `<div class="ci"><img src="${p.src}" alt="${p.name}"><div class="cinfo"><b>${p.name}</b><span class="price">${p.price}</span>
@@ -690,7 +711,7 @@ function renderCart(){if(!document.getElementById('okBox').hidden&&!Object.keys(
   document.getElementById('cartTotal').textContent=fmt(total);
   document.getElementById('cartForm').style.display=ids.length?'block':'none';
 }
-function openCart(){if(Object.keys(CART).length||document.getElementById('okBox').hidden){document.getElementById('okBox').hidden=true;document.getElementById('cartForm').hidden=false;document.querySelector('.cart-total').hidden=false}renderCart();document.getElementById('cart').classList.add('open')}
+function openCart(){if(Object.keys(CART).length&&!okBox.hidden){okBox.hidden=true;document.getElementById('cartList').hidden=false;document.querySelector('.cart-foot').hidden=false}renderCart();document.getElementById('cart').classList.add('open')}
 function closeCart(){document.getElementById('cart').classList.remove('open')}
 /* ===== GỬI ĐƠN HÀNG → Google Sheet + Email (Google Apps Script) ===== */
 const ORDER_ENDPOINT='https://script.google.com/macros/s/AKfycbxkZZ8Z_9Byjm2a4iALMFfQkJl4oo-PesnKtDKoDqj4SdcPwxTwliu_VzsyCjOZuE8OWA/exec';
@@ -713,20 +734,45 @@ function zaloConfirm(){
   if(!txt){const f=document.getElementById('cartForm');if(Object.keys(CART).length)txt=orderText(buildOrder(f))}
   if(txt&&navigator.clipboard){navigator.clipboard.writeText(txt).then(()=>toast('Đã sao chép đơn hàng – dán vào Zalo để gửi shop'),()=>{})}
   return true}
+let SENDING=false,PENDING=null;
+function lockForm(f,on){[...f.elements].forEach(el=>{if(el.name!=='website_hp')el.disabled=on});
+  document.querySelectorAll('.qty button').forEach(b=>b.disabled=on);
+  const btn=document.getElementById('orderBtn');btn.classList.toggle('loading',on);btn.innerHTML=on?'<span class="spin"></span>ĐANG GỬI ĐƠN...':'ĐẶT HÀNG'}
+function showMsg(m){const el=document.getElementById('formMsg');el.innerHTML=m;el.hidden=!m}
+function sigOf(o){return JSON.stringify([o.items,o.name,o.phone,o.address,o.rightEye,o.leftEye])}
 async function checkout(f){
-  const o=buildOrder(f);if(!o.items.length)return false;
-  const btn=document.getElementById('orderBtn');btn.disabled=true;btn.textContent='ĐANG GỬI ĐƠN...';
+  if(SENDING)return false;                        // chặn bấm nhiều lần
+  let o=buildOrder(f);if(!o.items.length)return false;
+  // gửi lại đúng đơn cũ (cùng mã) nếu lần trước lỗi mạng -> không bị trùng đơn
+  if(PENDING&&PENDING.sig===sigOf(o))o.orderId=PENDING.id;else PENDING={id:o.orderId,sig:sigOf(o)};
+  SENDING=true;showMsg('');lockForm(f,true);
   LAST_ORDER_TEXT=orderText(o);
+  const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),25000);
   try{
     if(!ORDER_ENDPOINT||ORDER_ENDPOINT.indexOf('/*')===0)throw new Error('no-endpoint');
-    await fetch(ORDER_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(o)});
-    CART={};saveCart();renderCart();
-    document.getElementById('okId').textContent=o.orderId;
-    f.hidden=true;document.getElementById('okBox').hidden=false;f.reset();document.querySelector('.cart-total').hidden=true;document.getElementById('cartList').innerHTML='';
+    const res=await fetch(ORDER_ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(o),signal:ctrl.signal,redirect:'follow'});
+    const data=await res.json();
+    if(!data||!data.ok)throw new Error((data&&data.error)||'server');
+    onSuccess(o,f);
   }catch(err){
-    toast('Chưa gửi được đơn – vui lòng xác nhận qua Zalo 0989 666 559');
-  }finally{btn.disabled=false;btn.textContent='ĐẶT HÀNG'}
+    lockForm(f,false);
+    showMsg(err.name==='AbortError'
+      ?'Mạng chậm, đơn chưa được xác nhận. Vui lòng bấm <b>ĐẶT HÀNG</b> lại (không bị trùng đơn) hoặc xác nhận qua Zalo.'
+      :String(err.message).includes('Thiếu')?'Vui lòng kiểm tra lại họ tên, số điện thoại và địa chỉ.'
+      :'Chưa gửi được đơn. Vui lòng bấm <b>ĐẶT HÀNG</b> lại hoặc xác nhận qua Zalo 0989 666 559.');
+  }finally{clearTimeout(timer);SENDING=false}
   return false}
+function onSuccess(o,f){
+  PENDING=null;
+  const li=it=>{const el=document.createElement('li');el.textContent=`${it.name} (${it.code}) x${it.qty}`;return el};
+  okId.textContent=o.orderId;okItems.replaceChildren(...o.items.map(li));okTotal.textContent=fmt(o.total);
+  okRecv.textContent='';okRecv.append('Người nhận: '+o.name+' – '+o.phone,document.createElement('br'),o.address);
+  okEyes.textContent='Độ mắt phải: '+(o.rightEye||'—')+' · Độ mắt trái: '+(o.leftEye||'—');
+  CART={};saveCart();f.reset();lockForm(f,false);
+  document.getElementById('cartList').hidden=true;document.querySelector('.cart-foot').hidden=true;
+  okBox.hidden=false;okBox.scrollTop=0;
+}
+function newOrder(){okBox.hidden=true;document.getElementById('cartList').hidden=false;document.querySelector('.cart-foot').hidden=false;LAST_ORDER_TEXT='';renderCart();closeCart()}
 let tmr;function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(tmr);tmr=setTimeout(()=>t.classList.remove('show'),2200)}
 // tabs
 function showTab(t){const names=TABS[t];document.getElementById('tabGrid').innerHTML=names.map(n=>P.find(p=>p.name.trim()==n.trim())).filter(Boolean).map(card).join('')}
