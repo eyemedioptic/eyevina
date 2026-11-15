@@ -320,6 +320,9 @@ section{padding:35px 0}
 .colors{display:flex;flex-wrap:wrap;gap:6px 8px;margin:0 0 14px!important}
 .colors li{display:inline-flex;align-items:center;gap:6px;margin:0!important;border:1px solid #e5e5e5;border-radius:20px;padding:3px 12px 3px 6px;font-size:14px!important;background:#fff}
 .colors span{width:16px;height:16px;border-radius:50%;border:1px solid #ccc;flex:none}
+.related-sec{background:#fafafa;padding:34px 0 40px}
+.related-sec .pslider{margin:0}
+.pslider .item-product h3 a{color:inherit;text-decoration:none}
 .ps-note{font-size:14.5px!important;color:#666!important}
 /* Slider sản phẩm chạy từ phải sang trái */
 .pslider{position:relative;margin:4px 0 12px}
@@ -630,9 +633,13 @@ section{padding:35px 0}
 <div><a class="c1" href="https://zalo.me/0989666559" target="_blank" rel="noopener">Nhắn Zalo 0989 666 559</a><a class="c2" href="/#san-pham">Xem sản phẩm</a></div>
 </div>
 
-<h2>Sản phẩm gợi ý</h2>
-<div class="grid-product" id="artProducts"></div>
-<script>window.addEventListener('DOMContentLoaded',()=>{const ids=[34,36,15,46];document.getElementById('artProducts').innerHTML=ids.map(i=>card(P[i])).join('');prodSlider('artSlider',10)});</script>
+<h2>Sản phẩm liên quan</h2>
+<div class="pslider" id="artRelated" aria-label="Sản phẩm liên quan">
+  <div class="ps-view"><div class="ps-track"></div></div>
+  <button type="button" class="ps-nav l" aria-label="Sản phẩm trước">‹</button>
+  <button type="button" class="ps-nav r" aria-label="Sản phẩm tiếp">›</button>
+</div>
+<script>window.addEventListener('DOMContentLoaded',()=>{prodSlider('artSlider',10);prodSlider('artRelated',12)});</script>
 
   </div>
 </article>
