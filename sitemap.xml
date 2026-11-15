@@ -79,6 +79,7 @@
     <lastmod>2026-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://eyevina.com/images/news/mua-lens-can-uy-tin-o-ha-noi-eyevina.jpg</image:loc></image:image>
     <image:image><image:loc>https://eyevina.com/images/news/uu-dai-thang-7-mua-kinh-ap-trong-tang-dung-dich-ngam-chi-co-.jpg</image:loc></image:image>
     <image:image><image:loc>https://eyevina.com/images/news/danh-gia-kinh-ap-trong-mat-ngoc-lens-eye-vina-co-nen-mua-kho.jpg</image:loc></image:image>
     <image:image><image:loc>https://eyevina.com/images/news/combo-kinh-ap-trong-lens-mat-dung-dich-hop-dung-tiet-kiem-de.jpg</image:loc></image:image>
@@ -575,5 +576,12 @@
     <priority>0.7</priority>
     <image:image><image:loc>https://eyevina.com/images/sp/fay-brown-57-0.jpg</image:loc></image:image>
     <image:image><image:loc>https://eyevina.com/images/sp/fay-brown-57-1.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://eyevina.com/tin-tuc/mua-lens-can-uy-tin-o-ha-noi-eyevina.html</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://eyevina.com/images/shop-lens-ha-noi-banner-1.jpg</image:loc></image:image>
   </url>
 </urlset>

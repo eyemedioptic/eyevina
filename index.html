@@ -297,6 +297,52 @@ section{padding:35px 0}
 .pd-trust{list-style:none;display:grid;gap:6px;font-size:14px;color:#555;border-top:1px dashed #ddd;padding-top:14px}
 .pd-related{margin-top:46px}
 .buybar{display:none}
+/* ===== BÀI VIẾT ===== */
+.art-wrap{padding:22px 0 40px}
+.art{max-width:860px}
+.art h1{font-size:30px;line-height:1.35;font-weight:700;color:#222;margin:4px 0 6px}
+.art-meta{color:#888;font-size:13.5px;margin-bottom:18px}
+.art p,.art li{font-size:16px;line-height:1.8;color:#3a3a3a}
+.art p{margin:0 0 14px;text-align:justify}
+.art h2{font-size:23px;line-height:1.4;font-weight:700;color:#222;margin:30px 0 12px;padding-left:12px;border-left:4px solid var(--gold);scroll-margin-top:70px}
+.art ul,.art ol{margin:0 0 16px 22px}.art li{margin:4px 0}
+.art a{color:#0b57d0;text-decoration:underline;text-underline-offset:2px}
+.art-lead{font-size:17px!important;background:#fafafa;border-radius:10px;padding:14px 16px}
+.art-fig{margin:0 0 18px}.art-fig img{width:100%;height:auto;border-radius:10px}.art-fig figcaption{font-size:13px;color:#888;text-align:center;margin-top:6px}
+.toc{border:1px solid #e5e5e5;border-radius:10px;padding:14px 18px;margin:0 0 10px;background:#fff}
+.toc b{display:block;margin-bottom:6px}.toc ol{margin:0 0 0 20px}.toc li{font-size:15px;margin:2px 0}.toc a{text-decoration:none}
+.tbl{overflow-x:auto;margin:0 0 14px}
+.tbl table{width:100%;border-collapse:collapse;min-width:520px;font-size:15px}
+.tbl th,.tbl td{border:1px solid #e3e3e3;padding:9px 12px;text-align:left;vertical-align:top}
+.tbl th{background:#333;color:#fff;font-weight:600}
+.tbl tr:nth-child(even) td{background:#fafafa}
+.colors{list-style:none;margin-left:0!important}
+.colors{display:flex;flex-wrap:wrap;gap:6px 8px;margin:0 0 14px!important}
+.colors li{display:inline-flex;align-items:center;gap:6px;margin:0!important;border:1px solid #e5e5e5;border-radius:20px;padding:3px 12px 3px 6px;font-size:14px!important;background:#fff}
+.colors span{width:16px;height:16px;border-radius:50%;border:1px solid #ccc;flex:none}
+.ps-note{font-size:14.5px!important;color:#666!important}
+/* Slider sản phẩm chạy từ phải sang trái */
+.pslider{position:relative;margin:4px 0 12px}
+.ps-view{overflow:hidden;padding:4px 2px 10px}
+.ps-track{display:flex;gap:14px;will-change:transform}
+.ps-track>.item-product{flex:0 0 calc((100% - 42px)/4)}
+.ps-nav{position:absolute;top:38%;width:36px;height:36px;border-radius:50%;border:1px solid #ddd;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.15);font-size:20px;cursor:pointer;z-index:3;display:grid;place-items:center;color:#333}
+.ps-nav.l{left:-10px}.ps-nav.r{right:-10px}
+@media(max-width:992px){.ps-track>.item-product{flex-basis:calc((100% - 28px)/3)}}
+@media(max-width:768px){.ps-track{gap:10px}.ps-track>.item-product{flex-basis:calc((100% - 10px)/2)}.ps-nav.l{left:-6px}.ps-nav.r{right:-6px}}
+.art a{overflow-wrap:anywhere}
+.art .item-product a{color:inherit;text-decoration:none;overflow-wrap:normal}
+.art .item-product h3 a:hover{color:var(--gold)}
+.art .item-product h3{font-size:15px;line-height:1.4;margin:12px 10px 10px;text-align:center}
+.art .item-product p{margin:0;text-align:left}
+.shops2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 14px}
+.shops2>div{border:1px solid #e5e5e5;border-radius:10px;padding:14px 16px;font-size:15px;line-height:1.7}
+.art .faq details p{text-align:left}
+.art-cta{background:#333;color:#fff;border-radius:14px;padding:22px;text-align:center;margin:30px 0}
+.art-cta b{font-size:19px}.art-cta p{color:#ddd!important;text-align:center!important;margin:6px 0 14px!important}
+.art-cta a{display:inline-block;border-radius:24px;padding:11px 22px;font-weight:700;text-decoration:none!important;margin:4px}
+.art-cta .c1{background:#0068ff;color:#fff!important}.art-cta .c2{background:#fff;color:#333!important}
+@media(max-width:768px){.art h1{font-size:23px}.art h2{font-size:19.5px}.art p,.art li{font-size:15.5px}.shops2{grid-template-columns:1fr}}
 /* ===== CART DRAWER ===== */
 .cart{position:fixed;inset:0;z-index:1000;visibility:hidden}
 .cart.open{visibility:visible}
@@ -550,6 +596,15 @@ section{padding:35px 0}
     <div class="title-h2"><h2>Tin tức nổi bật</h2></div>
     <div class="news-list" id="newsHome">
       <article class="news-item">
+        <a class="thumb" href="/tin-tuc/mua-lens-can-uy-tin-o-ha-noi-eyevina.html"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/mua-lens-can-uy-tin-o-ha-noi-eyevina.jpg" alt="Mua lens cận uy tín ở Hà Nội – EYE VINA, nhà cung cấp kính áp tròng sỉ &amp; cửa hàng lens Hà Nội"></a>
+        <div class="nc">
+          <h3><a href="/tin-tuc/mua-lens-can-uy-tin-o-ha-noi-eyevina.html">Mua lens cận uy tín ở Hà Nội – EYE VINA, nhà cung cấp kính áp tròng sỉ &amp; cửa hàng lens Hà Nội</a></h3>
+          <time class="date">15/11/2026</time>
+          <p class="excerpt">Mua lens cận ở đâu Hà Nội? EYE VINA cung cấp kính áp tròng sỉ uy tín, hệ thống bán lẻ lens mắt tại Hà Nội và miền Bắc: lens 1 ngày, 1 tháng, 3 tháng, 6 tháng, đủ màu, đáp ứng độ cận &amp; cận loạn.</p>
+          <a class="more" href="/tin-tuc/mua-lens-can-uy-tin-o-ha-noi-eyevina.html">Xem thêm →</a>
+        </div>
+      </article>
+      <article class="news-item">
         <a class="thumb" href="https://matngoc.vn/tin-tuc/170/uu-dai-thang-7-mua-kinh-ap-trong-tang-dung-dich-ngam-chi-co-tai-mat-ngoc-lens.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/uu-dai-thang-7-mua-kinh-ap-trong-tang-dung-dich-ngam-chi-co-.jpg" alt="Ưu đãi tháng 7: Mua kính áp tròng tặng dung dịch ngâm – Chỉ có tại Mắt Ngọc Lens!"></a>
         <div class="nc">
           <h3><a href="https://matngoc.vn/tin-tuc/170/uu-dai-thang-7-mua-kinh-ap-trong-tang-dung-dich-ngam-chi-co-tai-mat-ngoc-lens.html" target="_blank">Ưu đãi tháng 7: Mua kính áp tròng tặng dung dịch ngâm – Chỉ có tại Mắt Ngọc Lens!</a></h3>
@@ -576,7 +631,7 @@ section{padding:35px 0}
           <a class="more" href="https://matngoc.vn/tin-tuc/168/combo-kinh-ap-trong-lens-mat-dung-dich-hop-dung-tiet-kiem-den-30.html" target="_blank">Xem thêm →</a>
         </div>
       </article>
-      <article class="news-item">
+      <article class="news-item" hidden>
         <a class="thumb" href="https://matngoc.vn/tin-tuc/167/gia-lens-mat-kinh-ap-trong-bao-nhieu-bang-gia-cap-nhat-moi-nhat.html" target="_blank"><img loading="lazy" decoding="async" width="520" height="336" src="images/news/gia-lens-mat-kinh-ap-trong-bao-nhieu-bang-gia-cap-nhat-moi-n.jpg" alt="Giá lens mắt, kính áp tròng bao nhiêu? Bảng giá cập nhật mới nhất"></a>
         <div class="nc">
           <h3><a href="https://matngoc.vn/tin-tuc/167/gia-lens-mat-kinh-ap-trong-bao-nhieu-bang-gia-cap-nhat-moi-nhat.html" target="_blank">Giá lens mắt, kính áp tròng bao nhiêu? Bảng giá cập nhật mới nhất</a></h3>
@@ -956,7 +1011,7 @@ section{padding:35px 0}
       </article>
     </div>
     <div class="news-actions">
-      <button type="button" class="more-btn" id="newsHomeMore" onclick="moreNews('newsHome','newsHomeMore',4)">Xem thêm tin tức <span>(còn 41)</span></button>
+      <button type="button" class="more-btn" id="newsHomeMore" onclick="moreNews('newsHome','newsHomeMore',4)">Xem thêm tin tức <span>(còn 42)</span></button>
       <a class="news-all" href="tin-tuc.html">Xem tất cả tin tức →</a>
     </div>
   </div>
@@ -1223,6 +1278,25 @@ document.querySelectorAll('.menu .mwrap>ul a').forEach(a=>a.addEventListener('cl
   if(document.activeElement)document.activeElement.blur();
 }));
 document.addEventListener('click',e=>{const ul=document.querySelector('.menu .mwrap>ul');if(ul.classList.contains('open')&&!e.target.closest('.menu'))ul.classList.remove('open')});
+/* ===== SLIDER SẢN PHẨM NGẪU NHIÊN, CHẠY PHẢI -> TRÁI ===== */
+function prodSlider(id,n){
+  const box=document.getElementById(id);if(!box||typeof P==='undefined')return;
+  const track=box.querySelector('.ps-track');
+  const pool=P.map((p,i)=>i);for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]}
+  track.innerHTML=pool.slice(0,n).map(i=>card(P[i])).join('');
+  let busy=false,timer=null,paused=false;
+  const step=()=>{const c=track.children[0];return c?c.getBoundingClientRect().width+parseFloat(getComputedStyle(track).columnGap||getComputedStyle(track).gap||0):0};
+  function next(){if(busy)return;busy=true;const d=step();track.style.transition='transform .6s ease';track.style.transform=`translateX(-${d}px)`;
+    setTimeout(()=>{track.style.transition='none';track.appendChild(track.firstElementChild);track.style.transform='translateX(0)';busy=false},620)}
+  function prev(){if(busy)return;busy=true;const d=step();track.style.transition='none';track.insertBefore(track.lastElementChild,track.firstElementChild);track.style.transform=`translateX(-${d}px)`;
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{track.style.transition='transform .6s ease';track.style.transform='translateX(0)';setTimeout(()=>busy=false,620)}))}
+  const play=()=>{clearInterval(timer);timer=setInterval(()=>{if(!paused&&!document.hidden)next()},3000)};
+  box.querySelector('.ps-nav.r').onclick=()=>{next();play()};box.querySelector('.ps-nav.l').onclick=()=>{prev();play()};
+  box.addEventListener('mouseenter',()=>paused=true);box.addEventListener('mouseleave',()=>paused=false);
+  let x0=null;box.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;paused=true},{passive:true});
+  box.addEventListener('touchend',e=>{if(x0!==null){const dx=e.changedTouches[0].clientX-x0;if(dx<-40)next();else if(dx>40)prev()}x0=null;paused=false;play()},{passive:true});
+  play();
+}
 function newOrder(){okBox.hidden=true;document.getElementById('cartList').hidden=false;document.querySelector('.cart-foot').hidden=false;LAST_ORDER_TEXT='';renderCart();closeCart()}
 let tmr;function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(tmr);tmr=setTimeout(()=>t.classList.remove('show'),2200)}
 // tabs
