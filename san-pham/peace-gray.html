@@ -292,7 +292,7 @@ section{padding:35px 0}
 .pd-add span,.pd-now{overflow:hidden;text-overflow:ellipsis}
 @container (max-width:440px){.pd-buy{gap:6px}.qtybox button{width:26px}.qtybox input{width:30px;font-size:14px}.pd-add,.pd-now{font-size:13px;padding:0 9px;gap:5px}.pd-add svg{width:16px;height:16px}.pd-now{letter-spacing:0}}
 @container (max-width:345px){.pd-buy{gap:5px}.qtybox input{width:28px}.pd-add,.pd-now{font-size:12.5px;padding:0 5px;gap:4px}}
-@container (max-width:315px){.pd-add span{display:none}.pd-add{flex:0 0 42px;padding:0}}
+@container (max-width:300px){.pd-add span{display:none}.pd-add{flex:0 0 42px;padding:0}}
 .pd-zalo{display:block;text-align:center;margin:12px 0 16px;color:#0068ff;font-weight:600;text-decoration:underline}
 .pd-trust{list-style:none;display:grid;gap:6px;font-size:14px;color:#555;border-top:1px dashed #ddd;padding-top:14px}
 .pd-related{margin-top:46px}
@@ -477,7 +477,7 @@ section{padding:35px 0}
         <div class="pd-buy">
           <div class="qtybox" aria-label="Số lượng"><button type="button" onclick="pdQty(-1)" aria-label="Giảm">−</button><input id="pdQ" type="number" min="1" max="99" value="1" inputmode="numeric" aria-label="Số lượng"><button type="button" onclick="pdQty(1)" aria-label="Tăng">+</button></div>
           <button type="button" class="pd-add" onclick="pdAdd(false,this)" aria-label="Thêm vào giỏ" title="Thêm vào giỏ"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M2 3h3l2.6 12.2a1.5 1.5 0 0 0 1.5 1.2h8.7a1.5 1.5 0 0 0 1.5-1.1L22 7H6"/></svg><span>Thêm vào giỏ</span></button>
-          <button type="button" class="pd-now" onclick="pdAdd(true)">ĐẶT MUA NGAY</button>
+          <button type="button" class="pd-now" onclick="pdAdd(true)">MUA NGAY</button>
         </div>
         <a class="pd-zalo" href="https://zalo.me/0989666559" target="_blank" rel="noopener">Tư vấn chọn độ qua Zalo 0989 666 559</a>
         <ul class="pd-trust">
@@ -496,7 +496,7 @@ section{padding:35px 0}
 <div class="buybar" id="buybar">
   <div class="bb-price"><small>Peace Gray</small><b>295.000 đ</b></div>
   <button type="button" class="bb-add" onclick="pdAdd(false,this)" aria-label="Thêm vào giỏ"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M2 3h3l2.6 12.2a1.5 1.5 0 0 0 1.5 1.2h8.7a1.5 1.5 0 0 0 1.5-1.1L22 7H6"/></svg></button>
-  <button type="button" class="bb-now" onclick="pdAdd(true)">ĐẶT MUA NGAY</button>
+  <button type="button" class="bb-now" onclick="pdAdd(true)">MUA NGAY</button>
 </div>
 <script>
 const PD=40,PD_IMGS=["/images/sp/peace-gray-40-0.jpg"];
