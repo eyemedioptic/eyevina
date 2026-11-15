@@ -3,9 +3,10 @@
 Website tĩnh cho https://eyevina.com (GitHub Pages).
 
 - `index.html` – trang chủ
+- `san-pham/*.html` – 58 trang chi tiết sản phẩm (nút Thêm vào giỏ / Đặt mua ngay dùng chung giỏ hàng)
 - `tin-tuc.html` – trang tin tức (45 bài, link chi tiết sang matngoc.vn)
 - `images/`, `fonts/` – tài nguyên
-- `404.html` – chuyển link cũ sang matngoc.vn
+- `404.html` – link sản phẩm cũ /dich-vu/... -> /san-pham/...; link khác -> matngoc.vn
 - `CNAME` – tên miền eyevina.com
 
 ## Nhận đơn hàng (Google Sheet + Email)

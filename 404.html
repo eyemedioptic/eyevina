@@ -9,7 +9,8 @@
 <script>
 /* Giữ link cũ của eyevina.com:
    - Trang danh mục cũ  -> mục tương ứng trên trang chủ mới
-   - Trang chi tiết sản phẩm / tin tức cũ -> trang y hệt trên matngoc.vn */
+   - Trang chi tiết sản phẩm cũ -> trang sản phẩm mới /san-pham/...
+   - Tin tức cũ & trang khác -> trang y hệt trên matngoc.vn */
 (function () {
   var path = location.pathname, q = location.search;
   var p = path.replace(/\/+$/, '').toLowerCase();
@@ -20,8 +21,11 @@
     '/tin-tuc.html': '/#tin-tuc', '/video.html': '/#video',
     '/tim-shop.html': '/#shop-gan-day', '/lien-he.html': '/#lien-he', '/tuyen-dung.html': '/#lien-he'
   };
-  var target = null;
-  if (map[p] && !q) target = map[p];
+  var target = null, SP = ["kinh-xuyen-dem-chong-loa-bao-ve-mat-khi-lai-xe-ban-dem", "only-brown-contact-lens", "milk-choco-contact-lens", "dark-choco-contact-lens", "chery-moon-brown-conact-lens", "chery-moon-black-conact-lens", "caramen-choco-contact-lens", "joy-nude-brown-conatact-lens", "kristin-brown-contacr-lens", "tuny-brown-contact-lens", "sky-brown-contact-lens", "sky-gray-contact-lens", "joy-beige-brown-contact-lens", "navi-blue-contact-lens", "viea-black-silicone-hydroglel-contact-lens", "lens-clear-12h-6-thang", "lens-clear-12h-3-thang", "lens-chup-anh-cuoi-lens-su-kien-lens-du-tiec", "selly-choco", "beecall-gray-151", "beeall-choco", "clear-lens-3m", "nuoc-nho-mat-lens", "nuoc-ngam-lens-new", "mat-kinh-phan-cuc-mau-chu-v", "hop-bao-quan-lens", "millky-choco", "nuoc-ngam-lens", "nho-mat-contact-lens-drop", "qeye-care-150ml", "qeye-care-350ml", "x2-solution-350ml", "lens-tham-my", "clear-lens-6th", "clear-lens-3th", "oxy-lens-3th", "lens-can-loan", "beecall-choco", "beecall-gray-107", "pi-gray", "peace-gray", "flower-gray", "crystall-gray", "fotuler-blue", "cicle-black", "pull-brown", "seoul-brown", "shaha-choco", "paulo-gray-contact-lens", "uni-black-157", "uni-black-158", "see-green-contacr-lens", "glam-brown", "nouvelle-gray", "glam-gray", "nouvelle-brown", "glod-blue", "fay-brown"];
+  var m = p.match(/^\/dich-vu\/(\d+)\/([^\/]+)\.html$/);
+  if (m && SP.indexOf(m[2]) > -1) target = '/san-pham/' + m[2] + '.html';   // sản phẩm cũ -> trang sản phẩm mới
+  else if (m && SP.indexOf(m[2] + '-' + m[1]) > -1) target = '/san-pham/' + m[2] + '-' + m[1] + '.html';
+  else if (map[p] && !q) target = map[p];
   else if (/^\/(dich-vu|tin-tuc|san-pham|video|tuyen-dung|khuyen-mai|tim-kiem|thumb|upload)(\/|\.html|$)/.test(p) || /\.(html|php)$/.test(p) || /[?&](com|id|keywords|page)=/.test(q))
     target = 'https://matngoc.vn' + path + q;
   if (target) { window.__redirect = target; location.replace(target); }
