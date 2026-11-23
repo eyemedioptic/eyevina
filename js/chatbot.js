@@ -154,7 +154,7 @@ try{history=JSON.parse(ss('eyevina_chat')||'[]')}catch(e){history=[]}
 
 function build(){
   win=document.createElement('div');win.className='cb-win';win.setAttribute('role','dialog');win.setAttribute('aria-label','Chat tư vấn EYE VINA');
-  win.innerHTML='<div class="cb-head"><div class="cb-av">EV</div><div><b>Trợ lý EYE VINA</b><small>Trả lời tự động · Tư vấn viên qua Zalo 24/7</small></div><button type="button" class="cb-x" aria-label="Đóng">×</button></div>'+
+  win.innerHTML='<div class="cb-head"><div class="cb-av">EV</div><div><b>EYEVINA</b><small>Tư vấn viên qua Zalo 24/7</small></div><button type="button" class="cb-x" aria-label="Đóng">×</button></div>'+
     '<div class="cb-body" aria-live="polite"></div><div class="cb-chips"></div>'+
     '<form class="cb-form"><input type="text" maxlength="200" placeholder="Nhập câu hỏi, VD: lens cận giá bao nhiêu?" aria-label="Câu hỏi"><button type="submit" aria-label="Gửi"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg></button></form>'+
     '<div class="cb-note">Trợ lý tự động – thông tin giá theo web. Cần tư vấn độ mắt, nhắn Zalo '+PHONE+'.</div>';
