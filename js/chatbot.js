@@ -7,7 +7,7 @@ var STORES=[
   {n:'Lens Shop Hà Đông',a:'169/16 đường Nghĩa Lộ, Yên Nghĩa, Hà Đông, Hà Nội',m:'https://www.google.com/maps/dir/?api=1&destination=20.9525062,105.7385792'},
   {n:'Cửa hàng Minh Khai',a:'169 Minh Khai, Hai Bà Trưng, Hà Nội',m:'https://www.google.com/maps/dir/?api=1&destination=20.9956116,105.8558706'}
 ];
-var CHIPS=['Lens cận','Lens cận loạn','Lens màu','Nước ngâm lens','Giá lens','Địa chỉ cửa hàng','Cách đặt hàng','Mua sỉ'];
+var CHIPS=['Lens cận','Lens cận loạn','Lens màu','Nước ngâm lens','Giá lens','Địa chỉ cửa hàng','Đặt hàng','Mua sỉ'];
 
 function prods(){try{return (typeof P!=='undefined'&&P&&P.length)?P:[]}catch(e){return []}}
 function norm(s){return (s||'').toLowerCase().replace(/đ/g,'d').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9 ]+/g,' ').replace(/\s+/g,' ').trim()}
@@ -45,7 +45,7 @@ function cards(ids){
     h+='<div class="cb-card"><a href="'+esc(p.link||'#')+'"><img src="'+esc(p.src||'')+'" alt="'+esc(p.name)+'" loading="lazy"></a>'+
        '<a class="cb-cn" href="'+esc(p.link||'#')+'">'+esc(p.name)+'</a>'+
        '<div class="cb-cp"><b>'+esc(p.price)+'</b>'+(p.old&&num(p.old)>num(p.price)?'<del>'+esc(p.old)+'</del>':'')+'</div>'+
-       (typeof addCart==='function'?'<button type="button" class="cb-add" data-i="'+i+'">+ Thêm vào giỏ</button>':'')+'</div>';});
+       '<button type="button" class="cb-buy" data-i="'+i+'">Mua ngay</button>'+(typeof addCart==='function'?'<button type="button" class="cb-add" data-i="'+i+'">+ Thêm vào giỏ</button>':'')+'</div>';});
   return h+'</div>';
 }
 function zaloBtn(t){return '<a class="cb-zalo" href="'+ZALO+'" target="_blank" rel="noopener">'+(t||'Nhắn Zalo '+PHONE)+'</a>'}
@@ -68,8 +68,10 @@ function answer(raw){
     return {h:'Về đổi trả và bảo hành, bạn nhắn Zalo '+PHONE+' kèm mã đơn hoặc ảnh sản phẩm để nhân viên kiểm tra và hỗ trợ trực tiếp nhé.<br>'+zaloBtn()};
   if(has(q,['ship','giao','van chuyen','cod','phi ship','ngoai tinh','cac tinh','tinh khac','toan quoc']))
     return {h:'🚚 <b>Giao hàng:</b> nội thành Hà Nội giao nhanh. Khách ở ngoại thành và các tỉnh miền Bắc vui lòng nhắn Zalo '+PHONE+' để được báo cách giao và phí ship.<br>⚡ Đơn cần gấp: đặt trên web xong, chụp màn hình đơn gửi qua Zalo.<br>'+zaloBtn()};
-  if(has(q,['dat hang','dat mua','mua the nao','cach mua','mua sao','order','thanh toan','gio hang']))
-    return {h:'🛒 <b>Cách đặt hàng trên eyevina.com:</b><ol><li>Bấm <b>Thêm vào giỏ</b> hoặc <b>MUA NGAY</b> ở sản phẩm bạn chọn.</li><li>Mở giỏ hàng (biểu tượng 🛒 trên menu), điền họ tên, số điện thoại, địa chỉ, <b>độ mắt phải / độ mắt trái</b>.</li><li>Bấm gửi đơn, shop sẽ liên hệ xác nhận.</li></ol>Hoặc gọi/nhắn Zalo '+PHONE+' để đặt nhanh.'+(typeof openCart==='function'?'<button type="button" class="cb-opencart">Mở giỏ hàng</button>':''),chips:['Lens cận','Lens màu','Nước ngâm lens']};
+  if(has(q,['dat hang','dat mua','mua the nao','cach mua','mua sao','order','thanh toan','gio hang','mua ngay','muon mua']))
+    return {h:'🛒 Mời bạn <b>chọn sản phẩm muốn đặt mua</b>. Bấm <b>Mua ngay</b> ở sản phẩm để điền thông tin đặt hàng trực tiếp (họ tên, số điện thoại, địa chỉ, độ mắt phải / trái).<br>Muốn xem mẫu khác, chọn nhóm bên dưới hoặc gõ tên sản phẩm.'+
+      cards(pick('can',2).concat(pick('mau',3),pick('ngam',1)))+'<br>Hoặc gọi/nhắn Zalo '+PHONE+' để đặt nhanh.',
+      chips:['Lens cận','Lens cận loạn','Lens nâu','Lens xám','Lens đen','Lens choco','Lens xanh','Nước ngâm lens','Nước nhỏ mắt']};
   if(has(q,['do mat','do kham','kham mat','do khuc xa','kiem tra mat','khong biet do','bao nhieu do','toa']))
     return {h:'Khi đặt lens có độ, bạn ghi <b>độ mắt phải và độ mắt trái</b> theo kết quả đo mắt gần nhất (toa kính hoặc phiếu đo). Nếu chưa rõ độ hoặc lâu chưa đo lại, bạn nên đo mắt trước khi mua. Có thể nhắn Zalo '+PHONE+' gửi ảnh toa để shop tư vấn loại lens phù hợp.<br>'+zaloBtn('Gửi toa qua Zalo')};
   if(has(q,['loan','loan thi']))
@@ -90,7 +92,7 @@ function answer(raw){
   if(has(q,['mau','lens mau','co mau','gian trong','tu nhien']))
     return {h:'Bạn thích tông màu nào? Shop có lens <b>nâu, xám, đen, choco, xanh</b>.'+cards(pick('mau',4)),chips:['Lens nâu','Lens xám','Lens đen','Lens choco','Lens xanh']};
   if(has(q,['lens can','can thi','bi can','do can','mat can','kinh can','khong mau','trong suot','clear','oxy','deo can','khong do']))
-    return out('can','Lens cận trong suốt, nhìn tự nhiên, phù hợp đi học, đi làm. Khi đặt bạn ghi độ mắt phải / mắt trái nhé.',['Lens cận loạn','Lens màu','Cách đặt hàng']);
+    return out('can','Lens cận trong suốt, nhìn tự nhiên, phù hợp đi học, đi làm. Khi đặt bạn ghi độ mắt phải / mắt trái nhé.',['Lens cận loạn','Lens màu','Đặt hàng']);
   if(has(q,['gia','bao nhieu tien','bao nhieu','bang gia','re','khuyen mai','giam gia']))
     return {h:'💰 <b>Giá tham khảo trên web:</b><ul>'+
       ['can','loan','mau','ngam','nho'].map(function(k){var r=range(pick(k,99));return r?'<li>'+GROUPS[k].t+': '+r+'</li>':''}).join('')+
@@ -130,6 +132,7 @@ var css='.cb-btn{width:50px;height:50px;border-radius:50%;border:0;background:#e
 '.cb-card{flex:0 0 128px;scroll-snap-align:start;background:#fff;border:1px solid #eee;border-radius:10px;padding:6px;display:flex;flex-direction:column;gap:3px}'+
 '.cb-card img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:7px;display:block}.cb-cn{font-size:12.5px;color:#222!important;text-decoration:none;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:34px}'+
 '.cb-cp b{color:#e5161b;font-size:13px}.cb-cp del{color:#999;font-size:11px;margin-left:4px}'+
+'.cb-buy{border:0;background:#e5161b;color:#fff;border-radius:6px;padding:6px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit}.cb-buy:hover{background:#b80f14}'+
 '.cb-add,.cb-opencart{border:0;background:#333;color:#fff;border-radius:6px;padding:5px 6px;font-size:12px;cursor:pointer;font-family:inherit}.cb-add:hover,.cb-opencart:hover{background:#e5161b}.cb-opencart{margin-top:6px;padding:7px 12px}'+
 '.cb-zalo{display:inline-block;margin-top:6px;background:#0068ff;color:#fff!important;text-decoration:none;border-radius:16px;padding:6px 12px;font-weight:600;font-size:13px}'+
 '.cb-chips{display:flex;flex-wrap:wrap;gap:6px;padding:8px 10px 0;background:#fff;border-top:1px solid #eee;max-height:84px;overflow-y:auto}'+
@@ -161,6 +164,7 @@ function build(){
   win.querySelector('form').onsubmit=function(e){e.preventDefault();var inp=this.querySelector('input'),v=inp.value.trim();if(!v)return;inp.value='';ask(v)};
   win.addEventListener('click',function(e){
     var t=e.target.closest('.cb-chip');if(t){ask(t.textContent);return}
+    var bq=e.target.closest('.cb-buy');if(bq){var bi=+bq.dataset.i;if(typeof window.quickOrder==='function'){close();window.quickOrder(bi,1)}else location.href=prods()[bi].link;return}
     var a=e.target.closest('.cb-add');if(a&&typeof addCart==='function'){addCart(+a.dataset.i,null);a.textContent='✓ Đã thêm';return}
     if(e.target.closest('.cb-opencart')&&typeof openCart==='function'){close();openCart()}
   });
