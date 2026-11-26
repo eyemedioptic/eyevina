@@ -76,7 +76,7 @@
   </url>
   <url>
     <loc>https://eyevina.com/tin-tuc.html</loc>
-    <lastmod>2026-11-25</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image><image:loc>https://eyevina.com/images/news/mua-lens-can-uy-tin-o-ha-noi-eyevina.jpg</image:loc></image:image>
@@ -625,5 +625,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image><image:loc>https://eyevina.com/images/news/shop-lens-cau-giay-cover.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://eyevina.com/tin-tuc/shop-lens-nam-tu-liem.html</loc>
+    <lastmod>2026-11-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://eyevina.com/images/news/shop-lens-nam-tu-liem-cover.jpg</image:loc></image:image>
   </url>
 </urlset>
